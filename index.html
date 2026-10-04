@@ -8,838 +8,567 @@
 <body>
 <x-dc>
 <helmet>
+<link rel="icon" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Metal+Mania&family=Pirata+One&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Young+Serif&family=New+Rocker&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500;700&family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#211d1f; --bg2:#2b2427; --surface:#322a2e; --surface2:#3b3236;
-    --line:rgba(236,229,226,.14); --line2:rgba(236,229,226,.26);
-    --text:#f8f4f1; --muted:#d2c8c3; --faint:#a2948f;
-    --accent:#c01f3a; --accent-bright:#e8455f; --accent-deep:#7d1126; --accent-dim:rgba(192,31,58,.16);
-    --shadow:0 28px 60px -28px rgba(0,0,0,.72);
-    --display:'Cinzel', serif;
-  }
-  html[data-theme="light"]{
-    --bg:#f1ebe4; --bg2:#e8dfd6; --surface:#f8f2ec; --surface2:#efe5dc;
-    --line:rgba(28,20,22,.12); --line2:rgba(28,20,22,.22);
-    --text:#1d1517; --muted:#6c5b56; --faint:#9a8a84;
-    --accent:#9c1228; --accent-bright:#c01f3a; --accent-deep:#6e0c1c; --accent-dim:rgba(156,18,40,.12);
-    --shadow:0 28px 50px -30px rgba(60,20,25,.4);
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;}
-  body{background:var(--bg);color:var(--text);font-family:'IBM Plex Mono',monospace;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
-  ::selection{background:var(--accent);color:#fff;}
-  ::-webkit-scrollbar{width:11px;height:11px;}
-  ::-webkit-scrollbar-thumb{background:var(--accent-deep);}
-  ::-webkit-scrollbar-track{background:var(--bg2);}
-  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
-  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
-  @keyframes emberRise{0%{transform:translateY(0) scale(1);opacity:0}12%{opacity:.7}100%{transform:translateY(-160px) scale(.3);opacity:0}}
-  @keyframes glowPulse{0%,100%{opacity:.45}50%{opacity:.85}}
-  @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-  @media (prefers-reduced-motion: reduce){*{animation:none!important}}
-  @media (max-width:680px){
-    [data-nav]{order:3;flex-basis:100%;justify-content:center!important;margin-left:0!important;}
-    [data-controls]{order:2;margin-left:auto;}
-    [data-hero-art]{order:-1;min-height:0!important;margin-bottom:2px;}
-    [data-hero-art] img{width:min(158px,44%)!important;}
-    [data-glow]{width:240px!important;height:240px!important;}
-    [data-term]{font-size:12px!important;}
-  }
+:root{--bg:#ece6dc;--paper:#f4efe7;--plate:#e3dbcf;--ink:#1a1416;--muted:#3d3230;--faint:#5d4f4b;--line:rgba(26,20,22,.2);--rule:#1a1416;--grid:rgba(26,20,22,.06);--acc:#b3152f;--acc2:#8f0f24;--display:'Cinzel',serif;--goth:'New Rocker',serif;}
+html[data-theme="dark"]{--bg:#141012;--paper:#1c1719;--plate:#221b1e;--ink:#efe7e2;--muted:#d3c8c3;--faint:#a89a95;--line:rgba(239,231,226,.18);--rule:rgba(239,231,226,.55);--grid:rgba(239,231,226,.045);--acc:#e0405a;--acc2:#f0677d;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);}
+body{font-family:'JetBrains Mono',monospace;-webkit-font-smoothing:antialiased;}
+a{color:var(--acc);text-decoration:underline;text-underline-offset:3px;}
+a:hover{color:var(--acc2);}
+::selection{background:var(--acc);color:#fff;}
+[data-hdr-nav]{min-width:0;overflow-x:auto;scrollbar-width:none;}
+[data-hdr-nav] button{white-space:nowrap;flex-shrink:0;}
+@media (max-width:1180px){
+  [data-hdr-meta]{display:none!important;}
+  [data-hdr]{grid-template-columns:auto minmax(0,1fr) auto!important;}
+}
+@media (max-width:980px){
+  [data-hdr]{grid-template-columns:1fr auto!important;}
+  [data-hdr-nav]{grid-column:1 / -1;order:3;border-top:1.5px solid var(--rule);}
+  [data-hdr-nav] button{padding:14px 16px!important;}
+}
+@media (max-width:760px){
+  [data-hero]{grid-template-columns:1fr!important;}
+  [data-hero-l]{border-right:none!important;border-bottom:1.5px solid var(--rule);padding:36px 20px!important;}
+  [data-split]{grid-template-columns:1fr!important;}
+  [data-split] > *:first-child{border-right:none!important;border-bottom:1.5px solid var(--rule);}
+  [data-pad]{padding-left:20px!important;padding-right:20px!important;}
+  [data-row]{grid-template-columns:1fr!important;gap:8px!important;}
+  [data-ftr]{grid-template-columns:1fr!important;}
+  [data-ftr] > span{border-left:none!important;padding:12px 20px!important;}
+}
 </style>
 <script src="taficrypto.js"></script>
 <script src="content.js"></script>
 <script src="secrets.js"></script>
 </helmet>
 
-<div ref="{{ rootRef }}" style="position:relative;min-height:100vh;background:var(--bg);color:var(--text);overflow-x:hidden;">
+<div style="min-height:100vh;background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:32px 32px;color:var(--ink);font-family:'JetBrains Mono',monospace;display:flex;flex-direction:column;">
 
-  <div aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(900px 520px at 82% -8%, var(--accent-dim), transparent 62%), radial-gradient(720px 620px at -5% 105%, var(--accent-dim), transparent 60%);"></div>
-
-  <sc-if value="{{ showEmbers }}" hint-placeholder-val="{{ false }}">
-    <div aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;">
-      <span style="position:absolute;left:6%;bottom:-10px;width:3px;height:3px;border-radius:50%;background:var(--accent-bright);box-shadow:0 0 6px var(--accent);animation:emberRise 7s linear infinite;animation-delay:0s"></span>
-      <span style="position:absolute;left:14%;bottom:-10px;width:2px;height:2px;border-radius:50%;background:var(--accent);animation:emberRise 9s linear infinite;animation-delay:1.4s"></span>
-      <span style="position:absolute;left:22%;bottom:-10px;width:3px;height:3px;border-radius:50%;background:var(--accent-bright);box-shadow:0 0 6px var(--accent);animation:emberRise 8s linear infinite;animation-delay:3s"></span>
-      <span style="position:absolute;left:31%;bottom:-10px;width:2px;height:2px;border-radius:50%;background:var(--accent);animation:emberRise 10s linear infinite;animation-delay:.6s"></span>
-      <span style="position:absolute;left:39%;bottom:-10px;width:4px;height:4px;border-radius:50%;background:var(--accent-bright);box-shadow:0 0 8px var(--accent);animation:emberRise 6.5s linear infinite;animation-delay:2.2s"></span>
-      <span style="position:absolute;left:47%;bottom:-10px;width:2px;height:2px;border-radius:50%;background:var(--accent);animation:emberRise 9.5s linear infinite;animation-delay:4s"></span>
-      <span style="position:absolute;left:55%;bottom:-10px;width:3px;height:3px;border-radius:50%;background:var(--accent-bright);box-shadow:0 0 6px var(--accent);animation:emberRise 8.5s linear infinite;animation-delay:1s"></span>
-      <span style="position:absolute;left:63%;bottom:-10px;width:2px;height:2px;border-radius:50%;background:var(--accent);animation:emberRise 11s linear infinite;animation-delay:2.8s"></span>
-      <span style="position:absolute;left:71%;bottom:-10px;width:4px;height:4px;border-radius:50%;background:var(--accent-bright);box-shadow:0 0 8px var(--accent);animation:emberRise 7.2s linear infinite;animation-delay:.3s"></span>
-      <span style="position:absolute;left:79%;bottom:-10px;width:2px;height:2px;border-radius:50%;background:var(--accent);animation:emberRise 9.8s linear infinite;animation-delay:3.6s"></span>
-      <span style="position:absolute;left:87%;bottom:-10px;width:3px;height:3px;border-radius:50%;background:var(--accent-bright);box-shadow:0 0 6px var(--accent);animation:emberRise 8.2s linear infinite;animation-delay:1.8s"></span>
-      <span style="position:absolute;left:94%;bottom:-10px;width:2px;height:2px;border-radius:50%;background:var(--accent);animation:emberRise 10.5s linear infinite;animation-delay:.9s"></span>
+  <header data-hdr style="position:sticky;top:0;z-index:20;display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;border-bottom:1.5px solid var(--rule);background:var(--bg);">
+    <button onClick="{{ goHome }}" style="display:flex;align-items:center;gap:10px;padding:12px 24px;border:none;border-right:1.5px solid var(--rule);background:transparent;color:var(--ink);cursor:pointer;">
+      <img src="mascot.png" alt="" style="width:34px;height:34px;object-fit:contain;">
+      <span style="font-family:var(--goth);font-weight:400;font-size:32px;line-height:1;">Tafi</span>
+    </button>
+    <div data-hdr-meta style="display:flex;flex-direction:column;justify-content:center;padding:0 20px;border-right:1.5px solid var(--rule);font-size:10px;letter-spacing:1px;line-height:1.6;color:var(--faint);text-transform:uppercase;">
+      <span>{{ sheetLabel }}</span><span>Rev. 3.0 · 2026</span>
     </div>
-  </sc-if>
-
-  <header style="position:sticky;top:0;z-index:50;display:flex;align-items:center;flex-wrap:wrap;gap:12px 16px;padding:14px clamp(16px,4vw,40px);background:color-mix(in srgb, var(--bg) 80%, transparent);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line);">
-    <div onClick="{{ goHome }}" style="display:flex;align-items:center;gap:12px;cursor:pointer;">
-      <img src="mascot.png" alt="Tafi" style="width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 0 7px var(--accent-dim));"/>
-      <div style="line-height:1;">
-        <div style="font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:4px;color:var(--text);">TAFI</div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--faint);margin-top:3px;">{{ t.brandTag }}</div>
-      </div>
-    </div>
-
-    <nav data-nav style="margin-left:auto;display:flex;gap:2px;flex-wrap:wrap;justify-content:flex-end;">
-      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="6">
-        <button onClick="{{ item.onClick }}" style="background:none;border:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:8px 11px;color:{{ item.color }};position:relative;transition:color .25s;" style-hover="color:var(--accent-bright)">
-          {{ item.label }}
-          <sc-if value="{{ item.active }}" hint-placeholder-val="{{ false }}"><span style="position:absolute;left:11px;right:11px;bottom:1px;height:2px;background:var(--accent);"></span></sc-if>
+    <nav data-hdr-nav style="display:flex;align-items:stretch;">
+      <sc-for list="{{ nav }}" as="item" hint-placeholder-count="5">
+        <button onClick="{{ item.onClick }}" style="display:flex;align-items:center;gap:8px;padding:0 18px;border:none;border-right:1px solid var(--line);background:{{ item.bg }};color:{{ item.fg }};font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;cursor:pointer;" style-hover="color:var(--acc);">
+          <span style="opacity:.6;">{{ item.num }}</span>{{ item.label }}
         </button>
       </sc-for>
     </nav>
-
-    <div data-controls style="display:flex;gap:8px;align-items:center;">
-      <button onClick="{{ onToggleFun }}" aria-label="?" title="?" style="background:transparent;border:none;color:{{ funColor }};opacity:.55;width:28px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.25s;" style-hover="opacity:1;color:var(--accent-bright);transform:scale(1.15);">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c1 3.5 4.2 5.2 4.2 9.3a4.2 4.2 0 0 1-8.4 0c0-1.4.5-2.4 1.1-3.2-.1 1.6 1 2.2 1 2.2-.6-2.4 1-4.3 1.1-6 .2 1.6 1.6 2.6 2.2 3.8.3-2.7-1.1-4.5-1.2-6.1z"></path></svg>
-      </button>
-      <button onClick="{{ onToggleTheme }}" aria-label="theme" style="background:transparent;border:1px solid var(--line2);color:var(--muted);width:36px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:2px;transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent);">
-        <sc-if value="{{ themeIsDark }}" hint-placeholder-val="{{ true }}">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+    <div style="display:flex;align-items:stretch;border-left:1.5px solid var(--rule);">
+      <button onClick="{{ onToggleTheme }}" aria-label="Canvia el tema" style="width:44px;border:none;border-right:1px solid var(--line);background:transparent;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;" style-hover="color:var(--acc);">
+        <sc-if value="{{ themeIsLight }}" hint-placeholder-val="{{ true }}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
         </sc-if>
-        <sc-if value="{{ themeIsLight }}" hint-placeholder-val="{{ false }}">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+        <sc-if value="{{ themeIsDark }}" hint-placeholder-val="{{ false }}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
         </sc-if>
       </button>
-      <button onClick="{{ onToggleLang }}" aria-label="{{ langOther }}" title="{{ langOther }}" style="background:transparent;border:1px solid var(--line2);color:var(--muted);padding:6px 8px;height:34px;display:flex;align-items:center;cursor:pointer;border-radius:2px;transition:.2s;" style-hover="border-color:var(--accent);">
-        <sc-if value="{{ showUK }}" hint-placeholder-val="{{ true }}">
-          <svg width="23" height="16" viewBox="0 0 60 40" style="display:block;border-radius:2px;">
-            <defs><clipPath id="ukclip"><rect width="60" height="40" rx="3"></rect></clipPath></defs>
-            <g clip-path="url(#ukclip)">
-              <rect width="60" height="40" fill="#012169"></rect>
-              <path d="M0,0 60,40 M60,0 0,40" stroke="#fff" stroke-width="8"></path>
-              <path d="M0,0 60,40 M60,0 0,40" stroke="#C8102E" stroke-width="4"></path>
-              <path d="M30,0 V40 M0,20 H60" stroke="#fff" stroke-width="13"></path>
-              <path d="M30,0 V40 M0,20 H60" stroke="#C8102E" stroke-width="8"></path>
-            </g>
-          </svg>
-        </sc-if>
-        <sc-if value="{{ showCAT }}" hint-placeholder-val="{{ false }}">
-          <svg width="23" height="16" viewBox="0 0 60 40" style="display:block;border-radius:2px;">
-            <defs><clipPath id="catclip"><rect width="60" height="40" rx="3"></rect></clipPath></defs>
-            <g clip-path="url(#catclip)">
-              <rect width="60" height="40" fill="#FCDD09"></rect>
-              <rect y="4.44" width="60" height="4.44" fill="#DA121A"></rect>
-              <rect y="13.33" width="60" height="4.44" fill="#DA121A"></rect>
-              <rect y="22.22" width="60" height="4.44" fill="#DA121A"></rect>
-              <rect y="31.11" width="60" height="4.44" fill="#DA121A"></rect>
-            </g>
-          </svg>
-        </sc-if>
+      <button onClick="{{ setCA }}" aria-label="Català" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 12px;border:none;border-right:1px solid var(--line);background:{{ caBg }};color:{{ caFg }};cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;">
+        <span>CA</span>
+        <svg width="27" height="18" viewBox="0 0 27 18" shape-rendering="crispEdges" style="display:block;outline:1px solid var(--line);"><rect width="27" height="18" fill="#FCDD09"></rect><rect y="2" width="27" height="2" fill="#DA121A"></rect><rect y="6" width="27" height="2" fill="#DA121A"></rect><rect y="10" width="27" height="2" fill="#DA121A"></rect><rect y="14" width="27" height="2" fill="#DA121A"></rect></svg>
+      </button>
+      <button onClick="{{ setEN }}" aria-label="English" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:6px 12px;border:none;background:{{ enBg }};color:{{ enFg }};cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;">
+        <span>EN</span>
+        <svg width="27" height="18" viewBox="0 0 60 40" style="display:block;outline:1px solid var(--line);"><defs><clipPath id="ukc"><rect width="60" height="40"></rect></clipPath></defs><g clip-path="url(#ukc)"><rect width="60" height="40" fill="#012169"></rect><path d="M0,0 60,40 M60,0 0,40" stroke="#fff" stroke-width="8"></path><path d="M0,0 60,40 M60,0 0,40" stroke="#C8102E" stroke-width="4"></path><path d="M30,0 V40 M0,20 H60" stroke="#fff" stroke-width="13"></path><path d="M30,0 V40 M0,20 H60" stroke="#C8102E" stroke-width="8"></path></g></svg>
       </button>
     </div>
   </header>
 
-  <main ref="{{ mainRef }}" style="position:relative;z-index:1;">
+  <main style="flex:1;width:100%;max-width:1280px;margin:0 auto;">
 
-    <!-- ============ HOME ============ -->
+    <!-- ============ INICI ============ -->
     <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
-      <section style="padding:34px clamp(18px,5vw,40px) 16px;max-width:1180px;margin:0 auto;">
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(22px,4vw,48px);align-items:center;">
-          <div>
-            <div data-reveal="1" style="animation:rise .6s ease both;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);">{{ t.kicker }}</div>
-            <h1 data-reveal="1" style="animation:rise .6s ease both;font-family:var(--display);font-weight:700;font-size:clamp(30px,6.2vw,62px);line-height:1.05;margin:13px 0 0;letter-spacing:1px;text-wrap:balance;">{{ t.headA }}<br/><span style="color:var(--accent);">{{ t.headB }}</span></h1>
-            <p data-reveal="1" style="animation:rise .6s ease both;font-family:'EB Garamond',serif;font-size:19px;line-height:1.55;color:var(--muted);max-width:47ch;margin:14px 0 0;">{{ t.lede }}</p>
-            <div data-reveal="1" style="animation:rise .6s ease both;display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
-              <button onClick="{{ enterJournal }}" style="background:var(--accent);color:#fff;border:1px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:14px 22px;cursor:pointer;border-radius:2px;transition:.2s;" style-hover="background:var(--accent-bright);box-shadow:0 0 26px var(--accent-dim);">{{ t.enter }} &#9656;</button>
-              <button onClick="{{ enterBelongings }}" style="background:transparent;color:var(--text);border:1px solid var(--line2);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:14px 22px;cursor:pointer;border-radius:2px;transition:.2s;" style-hover="border-color:var(--accent);color:var(--accent);">{{ t.enter2 }}</button>
-            </div>
-            <div data-reveal="1" style="animation:rise .6s ease both;margin-top:22px;max-width:450px;border:1px solid var(--line2);background:color-mix(in srgb, var(--surface) 82%, transparent);border-radius:5px;overflow:hidden;box-shadow:var(--shadow);">
-              <div style="display:flex;gap:7px;align-items:center;padding:10px 13px;border-bottom:1px solid var(--line);background:var(--bg2);">
-                <span style="width:9px;height:9px;border-radius:50%;background:var(--accent);"></span>
-                <span style="width:9px;height:9px;border-radius:50%;background:var(--faint);"></span>
-                <span style="width:9px;height:9px;border-radius:50%;background:var(--faint);"></span>
-                <span style="margin-left:8px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--faint);letter-spacing:1px;">tafi@cat: ~</span>
-              </div>
-              <div data-term style="padding:15px 17px;font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.95;">
-                <sc-for list="{{ t.term }}" as="ln" hint-placeholder-count="4">
-                  <div><span style="color:var(--accent);">{{ ln.s }}</span> <span style="color:var(--muted);">{{ ln.t }}</span></div>
-                </sc-for>
-                <div><span style="color:var(--accent);">$</span> <span style="display:inline-block;width:8px;height:15px;background:var(--accent);vertical-align:middle;animation:blink 1.1s step-end infinite;"></span></div>
-              </div>
-            </div>
-          </div>
-
-          <div data-hero-art style="display:flex;justify-content:center;align-items:center;position:relative;min-height:clamp(220px,38vw,300px);">
-            <div data-glow aria-hidden="true" style="position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle, var(--accent-dim), transparent 66%);filter:blur(8px);animation:glowPulse 5.5s ease-in-out infinite;"></div>
-            <img src="mascot.png" alt="The horned king of Tafi" style="position:relative;width:min(430px,86%);object-fit:contain;filter:drop-shadow(0 26px 42px rgba(0,0,0,.55));animation:floaty 7.5s ease-in-out infinite;"/>
+      <div data-hero style="display:grid;grid-template-columns:minmax(0,1fr) 420px;border-bottom:1.5px solid var(--rule);border-left:1.5px solid var(--rule);border-right:1.5px solid var(--rule);">
+        <div data-hero-l style="padding:64px 56px;display:flex;flex-direction:column;gap:26px;border-right:1.5px solid var(--rule);">
+          <div style="font-size:12px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;">§00 — {{ t.kicker }}</div>
+          <h1 style="font-family:var(--display);font-stretch:62%;font-weight:800;font-size:clamp(40px,5.6vw,76px);line-height:1.02;margin:0;text-transform:uppercase;text-wrap:balance;">{{ t.headA }} <span style="color:var(--acc);">{{ t.headB }}</span></h1>
+          <p style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.55;color:var(--muted);margin:0;max-width:46ch;text-wrap:pretty;">{{ t.lede }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;">
+            <button onClick="{{ enterJournal }}" style="background:var(--acc);color:#fff;border:1.5px solid var(--acc);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:14px 20px;cursor:pointer;" style-hover="background:var(--acc2);">{{ t.enter }} →</button>
+            <button onClick="{{ enterBelongings }}" style="background:transparent;color:var(--ink);border:1.5px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;text-transform:uppercase;padding:14px 20px;cursor:pointer;" style-hover="color:var(--acc);border-color:var(--acc);">{{ t.enter2 }}</button>
           </div>
         </div>
-      </section>
-
-      <section style="padding:4px clamp(18px,5vw,40px) 84px;max-width:1180px;margin:0 auto;">
-        <div data-reveal="1" style="animation:rise .6s ease both;display:flex;align-items:center;gap:18px;margin-bottom:22px;">
-          <h2 style="font-family:var(--display);font-weight:600;font-size:15px;letter-spacing:4px;text-transform:uppercase;color:var(--faint);margin:0;">{{ t.indexTitle }}</h2>
-          <div style="flex:1;height:1px;background:var(--line);"></div>
+        <div style="display:flex;flex-direction:column;background:var(--plate);">
+          <div style="position:relative;flex:1;display:flex;align-items:center;justify-content:center;padding:36px;min-height:300px;">
+            <span style="position:absolute;top:16px;left:16px;width:18px;height:18px;border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);"></span>
+            <span style="position:absolute;top:16px;right:16px;width:18px;height:18px;border-top:1.5px solid var(--rule);border-right:1.5px solid var(--rule);"></span>
+            <span style="position:absolute;bottom:16px;left:16px;width:18px;height:18px;border-bottom:1.5px solid var(--rule);border-left:1.5px solid var(--rule);"></span>
+            <span style="position:absolute;bottom:16px;right:16px;width:18px;height:18px;border-bottom:1.5px solid var(--rule);border-right:1.5px solid var(--rule);"></span>
+            <img src="mascot.png" alt="{{ t.figAlt }}" style="width:100%;max-width:340px;object-fit:contain;">
+          </div>
+          <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 18px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;">
+            <span>{{ t.figLabel }}</span><span style="color:var(--faint);">{{ t.figSub }}</span>
+          </div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;">
-          <sc-for list="{{ cards }}" as="c" hint-placeholder-count="5">
-            <button data-reveal="1" onClick="{{ c.onClick }}" style="animation:rise .6s ease both;transition:border-color .25s, background .25s;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:5px;padding:15px 15px 16px;cursor:pointer;" style-hover="border-color:var(--accent);background:var(--surface2);">
-              <div style="display:flex;justify-content:space-between;align-items:flex-start;">
-                <span style="font-family:var(--display);font-weight:600;font-size:clamp(13px,3.3vw,18px);line-height:1.12;letter-spacing:-0.2px;color:var(--text);flex:1;min-width:0;overflow-wrap:break-word;">{{ c.label }}</span>
-                <span style="color:var(--accent);font-family:'IBM Plex Mono',monospace;">&#8599;</span>
+      </div>
+
+      <div data-pad style="padding:48px 56px 16px;display:flex;flex-direction:column;gap:20px;">
+        <button onClick="{{ enterJournal }}" style="align-self:flex-start;display:flex;align-items:center;gap:12px;background:none;border:none;border-bottom:1.5px solid var(--acc);padding:0 0 6px;color:var(--acc);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;" style-hover="color:var(--acc2);border-color:var(--acc2);">§01 — {{ t.nav.journal }}<span aria-hidden="true">→</span></button>
+        <div data-split style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);border:1.5px solid var(--rule);background:var(--paper);">
+          <sc-if value="{{ hasLatest }}" hint-placeholder-val="{{ true }}">
+            <article onClick="{{ latest.onOpen }}" style="padding:36px;display:flex;flex-direction:column;gap:16px;border-right:1.5px solid var(--rule);cursor:pointer;" style-hover="background:var(--plate);">
+              <div style="display:flex;flex-wrap:wrap;gap:10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;">
+                <span style="background:var(--acc);color:#fff;padding:4px 8px;">{{ t.newChip }}</span>
+                <span style="border:1px solid var(--rule);padding:3px 8px;">{{ latest.tag }}</span>
+                <span style="padding:4px 0;color:var(--faint);">{{ latest.date }}</span>
               </div>
-              <p style="font-family:'EB Garamond',serif;font-size:13.5px;color:var(--muted);margin:7px 0 0;line-height:1.45;">{{ c.d }}</p>
-            </button>
+              <h2 style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:clamp(28px,3vw,38px);line-height:1.05;margin:0;text-transform:uppercase;">{{ latest.t }}</h2>
+              <p style="font-family:'EB Garamond',serif;font-size:19px;line-height:1.6;color:var(--muted);margin:0;">{{ latest.x }}</p>
+              <span style="font-size:12px;letter-spacing:1px;margin-top:auto;text-transform:uppercase;">{{ t.readMore }} · {{ latest.mins }} min →</span>
+            </article>
+          </sc-if>
+          <div style="display:flex;flex-direction:column;">
+            <sc-for list="{{ olderEntries }}" as="e" hint-placeholder-count="2">
+              <div onClick="{{ e.onOpen }}" style="display:grid;grid-template-columns:56px minmax(0,1fr) auto;gap:16px;align-items:center;padding:24px 28px;border-bottom:1px solid var(--line);cursor:pointer;" style-hover="background:var(--plate);">
+                <span style="font-family:var(--display);font-stretch:62%;font-weight:700;font-size:32px;color:var(--acc);">{{ e.num }}</span>
+                <div style="display:flex;flex-direction:column;gap:4px;min-width:0;"><span style="font-size:11px;color:var(--faint);letter-spacing:1px;text-transform:uppercase;">{{ e.date }} · {{ e.tag }}</span><span style="font-family:'EB Garamond',serif;font-size:23px;line-height:1.2;">{{ e.t }}</span></div>
+                <span>→</span>
+              </div>
+            </sc-for>
+            <sc-if value="{{ hasLocked }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ enterJournal }}" style="display:flex;align-items:center;gap:10px;padding:20px 28px;border:none;background:transparent;color:var(--faint);font-family:'JetBrains Mono',monospace;font-size:12px;text-align:left;cursor:pointer;" style-hover="color:var(--acc);">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm3 8H9V6a3 3 0 0 1 6 0Z"></path></svg>{{ lockedCountLabel }}
+              </button>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+
+      <div data-pad style="padding:40px 56px 16px;display:flex;flex-direction:column;gap:20px;">
+        <button onClick="{{ enterProjects }}" style="align-self:flex-start;display:flex;align-items:center;gap:12px;background:none;border:none;border-bottom:1.5px solid var(--acc);padding:0 0 6px;color:var(--acc);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;" style-hover="color:var(--acc2);border-color:var(--acc2);">§02 — {{ t.nav.projects }}<span aria-hidden="true">→</span></button>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);background:var(--paper);">
+          <sc-for list="{{ projectsList }}" as="p" hint-placeholder-count="3">
+            <div onClick="{{ p.onOpen }}" style="padding:24px;display:flex;flex-direction:column;gap:10px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);cursor:pointer;" style-hover="background:var(--plate);">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--faint);">P-{{ p.num }}</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;background:var(--acc);"></span>{{ p.s }}</span></div>
+              <span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:26px;text-transform:uppercase;line-height:1.05;">{{ p.t }}</span>
+              <span style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.45;color:var(--muted);">{{ p.d }}</span>
+            </div>
           </sc-for>
         </div>
-      </section>
+      </div>
+
+      <div data-pad style="padding:40px 56px 64px;display:flex;flex-direction:column;gap:20px;">
+        <button onClick="{{ enterBelongings }}" style="align-self:flex-start;display:flex;align-items:center;gap:12px;background:none;border:none;border-bottom:1.5px solid var(--acc);padding:0 0 6px;color:var(--acc);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;" style-hover="color:var(--acc2);border-color:var(--acc2);">§04 — {{ t.nav.belongings }} / {{ t.artisans }}<span aria-hidden="true">→</span></button>
+      </div>
     </sc-if>
 
-    <!-- ============ JOURNAL ============ -->
-    <sc-if value="{{ isJournal }}" hint-placeholder-val="{{ false }}">
-      <section style="padding:56px clamp(18px,5vw,40px) 92px;max-width:980px;margin:0 auto;">
-        <sc-if value="{{ journalIsList }}" hint-placeholder-val="{{ true }}">
-        <div data-reveal="1" style="animation:rise .6s ease both;margin-bottom:14px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);">~/diari</div>
-          <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,52px);margin:10px 0 0;letter-spacing:1px;">{{ t.journalTitle }}</h2>
-          <p style="font-family:'EB Garamond',serif;font-size:19px;color:var(--muted);margin:12px 0 0;max-width:54ch;">{{ t.journalLead }}</p>
-          <div style="height:2px;width:64px;background:var(--accent);margin-top:20px;"></div>
-        </div>
-        <sc-for list="{{ journalList }}" as="e" hint-placeholder-count="3">
-          <article data-reveal="1" onClick="{{ e.onOpen }}" style="animation:rise .6s ease both;display:grid;grid-template-columns:clamp(90px,22vw,150px) 1fr;gap:clamp(14px,4vw,26px);padding:26px 0;border-top:1px solid var(--line);cursor:pointer;transition:border-color .2s;" style-hover="border-color:var(--accent);">
-            <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--faint);letter-spacing:1px;">{{ e.date }}</div>
-              <div style="display:inline-block;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);padding:3px 8px;border-radius:2px;">{{ e.tag }}</div>
-            </div>
-            <div>
-              <h3 style="font-family:var(--display);font-weight:600;font-size:27px;margin:0;color:var(--text);">{{ e.t }}</h3>
-              <p style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.6;color:var(--muted);margin:10px 0 0;max-width:60ch;">{{ e.x }}</p>
-              <span style="display:inline-block;margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);">{{ t.readMore }} &#9656;</span>
-            </div>
-          </article>
-        </sc-for>
-        <sc-for list="{{ lockedEntries }}" as="e" hint-placeholder-count="1">
-          <article style="display:grid;grid-template-columns:clamp(90px,22vw,150px) 1fr;gap:clamp(14px,4vw,26px);padding:26px 0;border-top:1px solid var(--line);">
-            <div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--faint);letter-spacing:1px;">{{ e.date }}</div>
-              <div style="display:inline-flex;align-items:center;gap:5px;margin-top:10px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);padding:3px 8px;border-radius:2px;"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm3 8H9V6a3 3 0 0 1 6 0Z"></path></svg>{{ t.lockChip }}</div>
-            </div>
-            <div>
-              <sc-if value="{{ e.unlocked }}" hint-placeholder-val="{{ false }}">
-                <h3 style="font-family:var(--display);font-weight:600;font-size:27px;margin:0;color:var(--text);">{{ e.t }}</h3>
-                <p style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.6;color:var(--muted);margin:10px 0 0;max-width:60ch;">{{ e.x }}</p>
-                <button onClick="{{ e.onRelock }}" style="background:transparent;color:var(--faint);border:1px solid var(--line2);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;border-radius:3px;margin-top:14px;" style-hover="border-color:var(--accent);color:var(--accent);">{{ t.relock }}</button>
-              </sc-if>
-              <sc-if value="{{ e.locked }}" hint-placeholder-val="{{ true }}">
-                <h3 style="font-family:var(--display);font-weight:600;font-size:24px;margin:0;color:var(--muted);">{{ t.lockEntry }}</h3>
-                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;align-items:center;">
-                  <input type="password" value="{{ e.pw }}" onChange="{{ e.onPw }}" onKeyDown="{{ e.onKey }}" placeholder="{{ t.lockPrompt }}" style="width:190px;max-width:62vw;background:var(--bg2);border:1px solid var(--line2);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:10px 12px;border-radius:3px;outline:none;"/>
-                  <button onClick="{{ e.onSubmit }}" style="background:var(--accent);color:#fff;border:1px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:11px 16px;cursor:pointer;border-radius:3px;" style-hover="background:var(--accent-bright);">{{ t.lockBtn }}</button>
-                </div>
-                <sc-if value="{{ e.err }}" hint-placeholder-val="{{ false }}"><div style="color:var(--accent-bright);font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:8px;">{{ t.lockErr }}</div></sc-if>
-                <div style="color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:8px;letter-spacing:.5px;">{{ t.lockHint }}</div>
-              </sc-if>
-            </div>
-          </article>
-        </sc-for>
-        </sc-if>
-        <sc-if value="{{ journalIsDetail }}" hint-placeholder-val="{{ false }}">
-          <article data-reveal="1" style="animation:rise .6s ease both;max-width:680px;">
-            <button onClick="{{ goBack }}" style="background:transparent;color:var(--accent);border:none;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:0;cursor:pointer;margin-bottom:24px;" style-hover="color:var(--accent-bright);">&#8592; {{ t.back }}</button>
-            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--faint);letter-spacing:1px;">{{ journalDetail.date }}</span>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);padding:3px 8px;border-radius:2px;">{{ journalDetail.tag }}</span>
-            </div>
-            <h1 style="font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,46px);margin:14px 0 0;letter-spacing:.5px;line-height:1.1;">{{ journalDetail.t }}</h1>
-            <div style="height:2px;width:54px;background:var(--accent);margin:22px 0;"></div>
-            <p style="font-family:'EB Garamond',serif;font-size:20px;line-height:1.7;color:var(--text);margin:0;white-space:pre-line;">{{ journalDetail.body }}</p>
-          </article>
-        </sc-if>
-      </section>
+    <!-- ============ SECTION HEADER (non-home list views) ============ -->
+    <sc-if value="{{ showSectionHead }}" hint-placeholder-val="{{ false }}">
+      <div data-pad style="padding:56px 56px 32px;display:flex;flex-direction:column;gap:16px;border-bottom:1.5px solid var(--rule);">
+        <span style="font-size:12px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;">§{{ secNum }} — {{ secSheet }}</span>
+        <h1 style="font-family:var(--display);font-stretch:62%;font-weight:800;font-size:clamp(40px,5.5vw,68px);line-height:1;margin:0;text-transform:uppercase;">{{ secTitle }}</h1>
+        <p style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.5;color:var(--muted);margin:0;max-width:52ch;">{{ secLead }}</p>
+      </div>
     </sc-if>
 
-    <!-- ============ PROJECTS ============ -->
-    <sc-if value="{{ isProjects }}" hint-placeholder-val="{{ false }}">
-      <section style="padding:56px clamp(18px,5vw,40px) 92px;max-width:980px;margin:0 auto;">
-        <sc-if value="{{ projectsIsList }}" hint-placeholder-val="{{ true }}">
-        <div data-reveal="1" style="animation:rise .6s ease both;margin-bottom:34px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);">~/projectes</div>
-          <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,52px);margin:10px 0 0;letter-spacing:1px;">{{ t.projectsTitle }}</h2>
-          <p style="font-family:'EB Garamond',serif;font-size:19px;color:var(--muted);margin:12px 0 0;max-width:54ch;">{{ t.projectsLead }}</p>
-          <div style="height:2px;width:64px;background:var(--accent);margin-top:20px;"></div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;">
-          <sc-for list="{{ projectsList }}" as="p" hint-placeholder-count="3">
-            <div data-reveal="1" onClick="{{ p.onOpen }}" style="animation:rise .6s ease both;transition:border-color .25s, transform .25s;border:1px solid var(--line);background:var(--surface);border-radius:5px;padding:24px;cursor:pointer;" style-hover="border-color:var(--accent);">
-              <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
-                <span style="font-family:var(--display);font-weight:600;font-size:25px;color:var(--text);">{{ p.t }}</span>
-                <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);padding:4px 9px;border-radius:2px;white-space:nowrap;">{{ p.s }}</span>
+    <!-- ============ DIARI ============ -->
+    <sc-if value="{{ journalListView }}" hint-placeholder-val="{{ false }}">
+      <div data-pad style="padding:32px 56px 72px;">
+        <div style="border:1.5px solid var(--rule);background:var(--paper);">
+          <sc-for list="{{ journalList }}" as="e" hint-placeholder-count="3">
+            <article data-row onClick="{{ e.onOpen }}" style="display:grid;grid-template-columns:72px 170px minmax(0,1fr) auto;gap:24px;align-items:baseline;padding:28px;border-bottom:1px solid var(--line);cursor:pointer;" style-hover="background:var(--plate);">
+              <span style="font-family:var(--display);font-stretch:62%;font-weight:700;font-size:36px;line-height:1;color:var(--acc);">{{ e.num }}</span>
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--faint);">{{ e.date }}</span><span style="align-self:flex-start;border:1px solid var(--rule);padding:3px 8px;">{{ e.tag }}</span></div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <h2 style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:26px;line-height:1.05;margin:0;text-transform:uppercase;">{{ e.t }}</h2>
+                <p style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.55;color:var(--muted);margin:0;max-width:60ch;">{{ e.x }}</p>
               </div>
-              <p style="font-family:'EB Garamond',serif;font-size:17px;line-height:1.55;color:var(--muted);margin:12px 0 0;">{{ p.d }}</p>
+              <span style="font-size:12px;white-space:nowrap;">{{ e.mins }} min →</span>
+            </article>
+          </sc-for>
+          <sc-for list="{{ lockedEntries }}" as="e" hint-placeholder-count="1">
+            <div data-row style="display:grid;grid-template-columns:72px 170px minmax(0,1fr);gap:24px;align-items:baseline;padding:28px;border-bottom:1px solid var(--line);">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="var(--acc)"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm3 8H9V6a3 3 0 0 1 6 0Z"></path></svg>
+              <div style="display:flex;flex-direction:column;gap:8px;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--faint);">{{ e.date }}</span><span style="align-self:flex-start;background:var(--ink);color:var(--bg);padding:3px 8px;">{{ t.lockChip }}</span></div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <sc-if value="{{ e.unlocked }}" hint-placeholder-val="{{ false }}">
+                  <h2 style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:26px;line-height:1.05;margin:0;text-transform:uppercase;">{{ e.t }}</h2>
+                  <p style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.55;color:var(--muted);margin:0;max-width:60ch;white-space:pre-line;">{{ e.x }}</p>
+                  <button onClick="{{ e.onRelock }}" style="align-self:flex-start;background:transparent;color:var(--faint);border:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;">{{ t.relock }}</button>
+                </sc-if>
+                <sc-if value="{{ e.locked }}" hint-placeholder-val="{{ true }}">
+                  <h2 style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:23px;line-height:1.05;margin:0;text-transform:uppercase;color:var(--faint);">{{ t.lockEntry }}</h2>
+                  <div style="display:flex;flex-wrap:wrap;">
+                    <input type="password" value="{{ e.pw }}" onChange="{{ e.onPw }}" onKeyDown="{{ e.onKey }}" placeholder="{{ t.lockPrompt }}" style="width:220px;max-width:60vw;background:var(--bg);border:1.5px solid var(--rule);border-right:none;color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:13px;padding:10px 12px;outline:none;">
+                    <button onClick="{{ e.onSubmit }}" style="background:var(--acc);color:#fff;border:1.5px solid var(--acc);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 16px;cursor:pointer;">{{ t.lockBtn }}</button>
+                  </div>
+                  <sc-if value="{{ e.err }}" hint-placeholder-val="{{ false }}"><span style="color:var(--acc);font-size:12px;">{{ t.lockErr }}</span></sc-if>
+                  <span style="color:var(--faint);font-size:11px;">{{ t.lockHint }}</span>
+                </sc-if>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ============ DETALL (diari / projecte / llibre) ============ -->
+    <sc-if value="{{ hasDetail }}" hint-placeholder-val="{{ false }}">
+      <article data-pad style="padding:48px 56px 88px;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center;">
+        <div style="width:100%;max-width:720px;display:flex;flex-direction:column;gap:20px;">
+          <button onClick="{{ goBack }}" style="align-self:flex-start;background:transparent;color:var(--ink);border:1.5px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:8px 12px;cursor:pointer;" style-hover="color:var(--acc);border-color:var(--acc);">← {{ t.back }}</button>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;font-size:11px;letter-spacing:1px;text-transform:uppercase;margin-top:12px;">
+            <span style="background:var(--acc);color:#fff;padding:4px 8px;">{{ detail.chip }}</span>
+            <span style="padding:4px 0;color:var(--faint);">{{ detail.meta }}</span>
+          </div>
+          <h1 style="font-family:var(--display);font-stretch:70%;font-weight:800;font-size:clamp(32px,4.5vw,52px);line-height:1.05;margin:0;text-transform:uppercase;text-wrap:balance;">{{ detail.t }}</h1>
+          <div style="height:1.5px;background:var(--rule);"></div>
+          <p style="font-family:'EB Garamond',serif;font-size:21px;line-height:1.7;color:var(--ink);margin:0;white-space:pre-line;text-wrap:pretty;">{{ detail.body }}</p>
+          <div style="display:flex;justify-content:space-between;padding-top:14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;color:var(--faint);text-transform:uppercase;"><span>tafi.cat</span><span>{{ detail.foot }}</span></div>
+        </div>
+      </article>
+    </sc-if>
+
+    <!-- ============ PROJECTES ============ -->
+    <sc-if value="{{ projectsListView }}" hint-placeholder-val="{{ false }}">
+      <div data-pad style="padding:32px 56px 72px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);background:var(--paper);">
+          <sc-for list="{{ projectsList }}" as="p" hint-placeholder-count="3">
+            <div onClick="{{ p.onOpen }}" style="padding:28px;display:flex;flex-direction:column;gap:12px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);cursor:pointer;min-height:220px;" style-hover="background:var(--plate);">
+              <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--faint);">P-{{ p.num }}</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;background:var(--acc);"></span>{{ p.s }}</span></div>
+              <span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:30px;text-transform:uppercase;line-height:1.05;">{{ p.t }}</span>
+              <span style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.5;color:var(--muted);">{{ p.d }}</span>
+              <span style="margin-top:auto;font-size:12px;">{{ t.readMore }} →</span>
             </div>
           </sc-for>
           <sc-for list="{{ lockedProjects }}" as="p" hint-placeholder-count="1">
-            <div style="border:1px solid var(--line);background:var(--surface);border-radius:5px;padding:24px;">
+            <div style="padding:28px;display:flex;flex-direction:column;gap:12px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);min-height:220px;">
               <sc-if value="{{ p.unlocked }}" hint-placeholder-val="{{ false }}">
-                <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
-                  <span style="font-family:var(--display);font-weight:600;font-size:25px;color:var(--text);">{{ p.t }}</span>
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);padding:4px 9px;border-radius:2px;white-space:nowrap;">{{ p.s }}</span>
-                </div>
-                <p style="font-family:'EB Garamond',serif;font-size:17px;line-height:1.55;color:var(--muted);margin:12px 0 0;">{{ p.d }}</p>
-                <button onClick="{{ p.onRelock }}" style="background:transparent;color:var(--faint);border:1px solid var(--line2);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;border-radius:3px;margin-top:14px;" style-hover="border-color:var(--accent);color:var(--accent);">{{ t.relock }}</button>
+                <div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--faint);">{{ t.lockProject }}</span><span>{{ p.s }}</span></div>
+                <span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:30px;text-transform:uppercase;line-height:1.05;">{{ p.t }}</span>
+                <span style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.5;color:var(--muted);">{{ p.d }}</span>
+                <button onClick="{{ p.onRelock }}" style="align-self:flex-start;margin-top:auto;background:transparent;color:var(--faint);border:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;">{{ t.relock }}</button>
               </sc-if>
               <sc-if value="{{ p.locked }}" hint-placeholder-val="{{ true }}">
-                <div style="display:flex;align-items:center;gap:8px;">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm3 8H9V6a3 3 0 0 1 6 0Z"></path></svg>
-                  <span style="font-family:var(--display);font-weight:600;font-size:22px;color:var(--muted);">{{ t.lockProject }}</span>
+                <div style="display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--acc);"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm3 8H9V6a3 3 0 0 1 6 0Z"></path></svg>{{ t.lockProject }}</div>
+                <div style="display:flex;margin-top:auto;">
+                  <input type="password" value="{{ p.pw }}" onChange="{{ p.onPw }}" onKeyDown="{{ p.onKey }}" placeholder="{{ t.lockPrompt }}" style="flex:1;min-width:0;background:var(--bg);border:1.5px solid var(--rule);border-right:none;color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:13px;padding:10px 12px;outline:none;">
+                  <button onClick="{{ p.onSubmit }}" style="background:var(--acc);color:#fff;border:1.5px solid var(--acc);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 14px;cursor:pointer;">{{ t.lockBtn }}</button>
                 </div>
-                <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px;align-items:center;">
-                  <input type="password" value="{{ p.pw }}" onChange="{{ p.onPw }}" onKeyDown="{{ p.onKey }}" placeholder="{{ t.lockPrompt }}" style="flex:1;min-width:120px;background:var(--bg2);border:1px solid var(--line2);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:13px;padding:10px 12px;border-radius:3px;outline:none;"/>
-                  <button onClick="{{ p.onSubmit }}" style="background:var(--accent);color:#fff;border:1px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:11px 16px;cursor:pointer;border-radius:3px;" style-hover="background:var(--accent-bright);">{{ t.lockBtn }}</button>
-                </div>
-                <sc-if value="{{ p.err }}" hint-placeholder-val="{{ false }}"><div style="color:var(--accent-bright);font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:8px;">{{ t.lockErr }}</div></sc-if>
-                <div style="color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:8px;letter-spacing:.5px;">{{ t.lockHint }}</div>
+                <sc-if value="{{ p.err }}" hint-placeholder-val="{{ false }}"><span style="color:var(--acc);font-size:12px;">{{ t.lockErr }}</span></sc-if>
               </sc-if>
             </div>
           </sc-for>
         </div>
-        </sc-if>
-        <sc-if value="{{ projectsIsDetail }}" hint-placeholder-val="{{ false }}">
-          <div data-reveal="1" style="animation:rise .6s ease both;max-width:680px;">
-            <button onClick="{{ goBack }}" style="background:transparent;color:var(--accent);border:none;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:0;cursor:pointer;margin-bottom:24px;" style-hover="color:var(--accent-bright);">&#8592; {{ t.back }}</button>
-            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
-              <h1 style="font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,44px);margin:0;letter-spacing:.5px;">{{ projectDetail.t }}</h1>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);padding:5px 11px;border-radius:2px;white-space:nowrap;">{{ projectDetail.s }}</span>
-            </div>
-            <div style="height:2px;width:54px;background:var(--accent);margin:22px 0;"></div>
-            <p style="font-family:'EB Garamond',serif;font-size:20px;line-height:1.7;color:var(--text);margin:0;white-space:pre-line;">{{ projectDetail.body }}</p>
-          </div>
-        </sc-if>
-      </section>
+      </div>
     </sc-if>
 
-    <!-- ============ UPDATES ============ -->
-    <sc-if value="{{ isUpdates }}" hint-placeholder-val="{{ false }}">
-      <section style="padding:56px clamp(18px,5vw,40px) 92px;max-width:860px;margin:0 auto;">
-        <div data-reveal="1" style="animation:rise .6s ease both;margin-bottom:24px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);">~/updates</div>
-          <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,52px);margin:10px 0 0;letter-spacing:1px;">{{ t.updatesTitle }}</h2>
-          <p style="font-family:'EB Garamond',serif;font-size:19px;color:var(--muted);margin:12px 0 0;max-width:54ch;">{{ t.updatesLead }}</p>
-          <div style="height:2px;width:64px;background:var(--accent);margin-top:20px;"></div>
-        </div>
-        <sc-for list="{{ updatesList }}" as="u" hint-placeholder-count="3">
-          <div data-reveal="1" style="animation:rise .6s ease both;display:grid;grid-template-columns:clamp(74px,20vw,108px) 1fr;gap:clamp(16px,4vw,28px);padding:26px 0;border-top:1px solid var(--line);">
-            <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:1px;padding-top:4px;">{{ u.date }}</div>
-            <div>
-              <h3 style="font-family:var(--display);font-weight:600;font-size:23px;color:var(--text);margin:0;line-height:1.15;">{{ u.title }}</h3>
-              <p style="font-family:'EB Garamond',serif;font-size:19px;line-height:1.6;color:var(--muted);margin:8px 0 0;white-space:pre-line;text-align:justify;text-wrap:pretty;">{{ u.body }}</p>
-            </div>
-          </div>
-        </sc-for>
-      </section>
-    </sc-if>
-
-    <!-- ============ BELONGINGS ============ -->
-    <sc-if value="{{ isBelongings }}" hint-placeholder-val="{{ false }}">
-      <section style="padding:56px clamp(18px,5vw,40px) 92px;max-width:980px;margin:0 auto;">
-        <div data-reveal="1" style="animation:rise .6s ease both;margin-bottom:10px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);">~/pertinences</div>
-          <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,52px);margin:10px 0 0;letter-spacing:1px;">{{ t.belongingsTitle }}</h2>
-          <p style="font-family:'EB Garamond',serif;font-size:19px;color:var(--muted);margin:12px 0 0;max-width:54ch;">{{ t.belongingsLead }}</p>
-          <div style="height:2px;width:64px;background:var(--accent);margin-top:20px;"></div>
-        </div>
-
-        <div data-reveal="1" style="animation:rise .6s ease both;display:flex;align-items:center;gap:14px;margin:44px 0 18px;">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);">{{ t.computing }}</span>
-          <div style="flex:1;height:1px;background:var(--line);"></div>
-        </div>
-
-        <div data-reveal="1" style="animation:rise .6s ease both;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--surface);margin-bottom:20px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);background:var(--bg2);">
-            <div><div style="font-family:var(--display);font-weight:600;font-size:22px;color:var(--text);">{{ t.pcRubiusName }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:1px;margin-top:3px;">{{ t.pcRubiusYears }}</div></div>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent-dim);padding:5px 10px;border-radius:2px;">{{ t.active }}</span>
-          </div>
-          <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:13px;">
-            <sc-for list="{{ t.pcRubiusRows }}" as="r" hint-placeholder-count="7">
-              <tr style="border-top:1px solid var(--line);"><td style="padding:11px 18px;color:var(--faint);width:34%;text-transform:uppercase;letter-spacing:1px;font-size:11px;">{{ r.k }}</td><td style="padding:11px 18px;color:var(--text);">{{ r.v }}</td></tr>
-            </sc-for>
-          </table>
-        </div>
-
-        <div data-reveal="1" style="animation:rise .6s ease both;transition:filter .5s;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--surface);margin-bottom:20px;filter:grayscale(.75);" style-hover="filter:grayscale(0);">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);background:var(--bg2);">
-            <div><div style="font-family:var(--display);font-weight:600;font-size:22px;color:var(--muted);">{{ t.pcDarwinName }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:1px;margin-top:3px;">{{ t.pcDarwinYears }}</div></div>
-            <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--faint);border:1px solid var(--line2);padding:5px 10px;border-radius:2px;">{{ t.retired }}</span>
-          </div>
-          <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:13px;">
-            <sc-for list="{{ t.pcDarwinRows }}" as="r" hint-placeholder-count="7">
-              <tr style="border-top:1px solid var(--line);"><td style="padding:11px 18px;color:var(--faint);width:34%;text-transform:uppercase;letter-spacing:1px;font-size:11px;">{{ r.k }}</td><td style="padding:11px 18px;color:var(--muted);">{{ r.v }}</td></tr>
-            </sc-for>
-          </table>
-        </div>
-
-        <div data-reveal="1" style="animation:rise .6s ease both;display:flex;align-items:center;gap:14px;margin:44px 0 18px;">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);">{{ t.peripherals }}</span>
-          <div style="flex:1;height:1px;background:var(--line);"></div>
-        </div>
-
-        <div data-reveal="1" style="animation:rise .6s ease both;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--surface);margin-bottom:20px;max-width:560px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;padding:15px 18px;border-bottom:1px solid var(--line);background:var(--bg2);">
-            <div><div style="font-family:var(--display);font-weight:600;font-size:22px;color:var(--text);">{{ t.keyboardName }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:1px;margin-top:3px;">{{ t.keyboardSub }}</div></div>
-          </div>
-          <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:13px;">
-            <sc-for list="{{ t.keyboardRows }}" as="r" hint-placeholder-count="4">
-              <tr style="border-top:1px solid var(--line);"><td style="padding:11px 18px;color:var(--faint);width:34%;text-transform:uppercase;letter-spacing:1px;font-size:11px;">{{ r.k }}</td><td style="padding:11px 18px;color:var(--text);">{{ r.v }}</td></tr>
-            </sc-for>
-          </table>
-        </div>
-
-        <div data-reveal="1" style="animation:rise .6s ease both;display:flex;align-items:center;gap:14px;margin:44px 0 8px;">
-          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);">{{ t.artisans }}</span>
-          <div style="flex:1;height:1px;background:var(--line);"></div>
-        </div>
-        <div data-reveal="1" style="animation:rise .6s ease both;margin-bottom:20px;">
-          <div style="font-family:var(--display);font-weight:600;font-size:26px;color:var(--text);">{{ t.dragonsTitle }}</div>
-          <p style="font-family:'EB Garamond',serif;font-size:17px;color:var(--muted);margin:6px 0 0;">{{ t.dragonsLead }}</p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:18px;">
-          <figure data-reveal="1" style="animation:rise .6s ease both;transition:border-color .25s, transform .25s;margin:0;width:240px;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--surface);" style-hover="border-color:var(--accent);transform:translateY(-4px);">
-            <div style="width:240px;height:216px;background:url('dragons.jpg') -11px -93px / 769px auto no-repeat;"></div>
-            <figcaption style="padding:13px 14px;font-family:var(--display);font-size:17px;color:var(--text);text-align:center;border-top:1px solid var(--line);">Slain Rottermelon</figcaption>
-          </figure>
-          <figure data-reveal="1" style="animation:rise .6s ease both;transition:border-color .25s, transform .25s;margin:0;width:240px;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--surface);" style-hover="border-color:var(--accent);transform:translateY(-4px);">
-            <div style="width:240px;height:216px;background:url('dragons.jpg') -264px -93px / 769px auto no-repeat;"></div>
-            <figcaption style="padding:13px 14px;font-family:var(--display);font-size:17px;color:var(--text);text-align:center;border-top:1px solid var(--line);">Slain Shenronington</figcaption>
-          </figure>
-          <figure data-reveal="1" style="animation:rise .6s ease both;transition:border-color .25s, transform .25s;margin:0;width:240px;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--surface);" style-hover="border-color:var(--accent);transform:translateY(-4px);">
-            <div style="width:240px;height:216px;background:url('dragons.jpg') -519px -93px / 769px auto no-repeat;"></div>
-            <figcaption style="padding:13px 14px;font-family:var(--display);font-size:17px;color:var(--text);text-align:center;border-top:1px solid var(--line);">Slain Black Skull</figcaption>
-          </figure>
-        </div>
-        <div data-reveal="1" style="animation:rise .6s ease both;margin:32px 0 20px;">
-          <div style="font-family:var(--display);font-weight:600;font-size:26px;color:var(--text);">{{ t.grimeyTitle }}</div>
-          <p style="font-family:'EB Garamond',serif;font-size:17px;color:var(--muted);margin:6px 0 0;">{{ t.grimeyLead }}</p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:18px;">
-          <figure data-reveal="1" style="animation:rise .6s ease both;transition:border-color .25s, transform .25s;margin:0;width:240px;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--surface);" style-hover="border-color:var(--accent);transform:translateY(-4px);">
-            <img src="Garbo%20Puss%20v4%20Acid%20Punk.jpg" alt="Garbo Puss v4 Acid Punk" style="display:block;width:240px;height:216px;object-fit:cover;"/>
-            <figcaption style="padding:13px 14px;font-family:var(--display);font-size:17px;color:var(--text);text-align:center;border-top:1px solid var(--line);">Garbo Puss v4 Acid Punk</figcaption>
-          </figure>
-          <figure data-reveal="1" style="animation:rise .6s ease both;transition:border-color .25s, transform .25s;margin:0;width:240px;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--surface);" style-hover="border-color:var(--accent);transform:translateY(-4px);">
-            <img src="Trash%20Panda%20v4%20Akira.jpg" alt="Trash Panda v4 Akira" style="display:block;width:240px;height:216px;object-fit:cover;"/>
-            <figcaption style="padding:13px 14px;font-family:var(--display);font-size:17px;color:var(--text);text-align:center;border-top:1px solid var(--line);">Trash Panda v4 Akira</figcaption>
-          </figure>
-        </div>
-
-        <div data-reveal="1" style="animation:rise .6s ease both;margin:32px 0 20px;">
-          <div style="font-family:var(--display);font-weight:600;font-size:26px;color:var(--text);">{{ t.doctorTitle }}</div>
-          <p style="font-family:'EB Garamond',serif;font-size:17px;color:var(--muted);margin:6px 0 0;">{{ t.doctorLead }}</p>
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:18px;">
-          <figure data-reveal="1" style="animation:rise .6s ease both;transition:border-color .25s, transform .25s;margin:0;width:240px;border:1px solid var(--line);border-radius:5px;overflow:hidden;background:var(--surface);" style-hover="border-color:var(--accent);transform:translateY(-4px);">
-            <img src="Autopsy%20Exploratory%20Byte.jpg" alt="Autopsy Exploratory Byte" style="display:block;width:240px;height:216px;object-fit:cover;"/>
-            <figcaption style="padding:13px 14px;font-family:var(--display);font-size:17px;color:var(--text);text-align:center;border-top:1px solid var(--line);">Autopsy Exploratory Byte</figcaption>
-          </figure>
-        </div>
-      </section>
-    </sc-if>
-
-    <!-- ============ BOOKS ============ -->
-    <sc-if value="{{ isBooks }}" hint-placeholder-val="{{ false }}">
-      <section style="padding:56px clamp(18px,5vw,40px) 92px;max-width:980px;margin:0 auto;">
-        <sc-if value="{{ booksIsList }}" hint-placeholder-val="{{ true }}">
-        <div data-reveal="1" style="animation:rise .6s ease both;margin-bottom:34px;">
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);">~/llibres</div>
-          <h2 style="font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,52px);margin:10px 0 0;letter-spacing:1px;">{{ t.booksTitle }}</h2>
-          <p style="font-family:'EB Garamond',serif;font-size:19px;color:var(--muted);margin:12px 0 0;max-width:54ch;">{{ t.booksLead }}</p>
-          <div style="height:2px;width:64px;background:var(--accent);margin-top:20px;"></div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;">
-          <sc-for list="{{ booksList }}" as="b" hint-placeholder-count="4">
-            <div data-reveal="1" onClick="{{ b.onOpen }}" style="animation:rise .6s ease both;transition:border-color .25s, transform .25s;border:1px solid var(--line);background:var(--surface);border-radius:5px;padding:20px;display:flex;flex-direction:column;gap:12px;min-height:172px;cursor:pointer;" style-hover="border-color:var(--accent);">
-              <div style="display:flex;justify-content:space-between;align-items:center;">
-                <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);">{{ b.cat }}</span>
-                <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--faint);">{{ b.st }}</span>
-              </div>
-              <div style="font-family:var(--display);font-size:34px;color:var(--faint);line-height:1;">{{ b.t }}</div>
-              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);margin-top:auto;">{{ b.a }}</div>
+    <!-- ============ LLIBRES ============ -->
+    <sc-if value="{{ booksListView }}" hint-placeholder-val="{{ false }}">
+      <div data-pad style="padding:32px 56px 72px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);background:var(--paper);">
+          <sc-for list="{{ booksList }}" as="b" hint-placeholder-count="2">
+            <div onClick="{{ b.onOpen }}" style="padding:24px;display:flex;flex-direction:column;gap:12px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);cursor:pointer;min-height:220px;" style-hover="background:var(--plate);">
+              <div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--acc);">{{ b.cat }}</span><span style="color:var(--faint);">{{ b.st }}</span></div>
+              <span style="font-family:'EB Garamond',serif;font-style:italic;font-size:30px;line-height:1.1;">{{ b.t }}</span>
+              <span style="margin-top:auto;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--faint);">{{ b.a }}</span>
             </div>
           </sc-for>
           <sc-for list="{{ lockedBooks }}" as="b" hint-placeholder-count="1">
-            <div style="border:1px solid var(--line);background:var(--surface);border-radius:5px;padding:20px;display:flex;flex-direction:column;gap:10px;min-height:172px;">
+            <div style="padding:24px;display:flex;flex-direction:column;gap:12px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);min-height:220px;">
               <sc-if value="{{ b.unlocked }}" hint-placeholder-val="{{ false }}">
-                <div style="display:flex;justify-content:space-between;align-items:center;">
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);">&#9733; {{ t.lockBook }}</span>
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--faint);">{{ b.st }}</span>
-                </div>
-                <div style="font-family:var(--display);font-size:23px;color:var(--text);line-height:1.12;">{{ b.t }}</div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);margin-top:auto;">{{ b.a }}</div>
-                <button onClick="{{ b.onRelock }}" style="background:transparent;color:var(--faint);border:1px solid var(--line2);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:5px 10px;cursor:pointer;border-radius:3px;align-self:flex-start;" style-hover="border-color:var(--accent);color:var(--accent);">{{ t.relock }}</button>
+                <div style="display:flex;justify-content:space-between;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--acc);">★ {{ t.lockBook }}</span><span style="color:var(--faint);">{{ b.st }}</span></div>
+                <span style="font-family:'EB Garamond',serif;font-style:italic;font-size:30px;line-height:1.1;">{{ b.t }}</span>
+                <span style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--faint);">{{ b.a }}</span>
+                <button onClick="{{ b.onRelock }}" style="align-self:flex-start;margin-top:auto;background:transparent;color:var(--faint);border:1px solid var(--rule);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:6px 12px;cursor:pointer;">{{ t.relock }}</button>
               </sc-if>
               <sc-if value="{{ b.locked }}" hint-placeholder-val="{{ true }}">
-                <div style="display:flex;align-items:center;gap:7px;">
-                  <svg width="13" height="13" viewBox="0 0 24 24" fill="var(--accent)"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm3 8H9V6a3 3 0 0 1 6 0Z"></path></svg>
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);">&#9733; {{ t.lockBook }}</span>
-                </div>
-                <div style="font-family:var(--display);font-size:30px;color:var(--faint);line-height:1;">&#10022;</div>
-                <input type="password" value="{{ b.pw }}" onChange="{{ b.onPw }}" onKeyDown="{{ b.onKey }}" placeholder="{{ t.lockPrompt }}" style="width:100%;background:var(--bg2);border:1px solid var(--line2);color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:12px;padding:9px 11px;border-radius:3px;outline:none;margin-top:auto;"/>
-                <button onClick="{{ b.onSubmit }}" style="background:var(--accent);color:#fff;border:1px solid var(--accent);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:1.5px;text-transform:uppercase;padding:9px 12px;cursor:pointer;border-radius:3px;" style-hover="background:var(--accent-bright);">{{ t.lockBtn }}</button>
-                <sc-if value="{{ b.err }}" hint-placeholder-val="{{ false }}"><div style="color:var(--accent-bright);font-family:'IBM Plex Mono',monospace;font-size:11px;">{{ t.lockErr }}</div></sc-if>
+                <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--acc);">★ {{ t.lockBook }}</span>
+                <input type="password" value="{{ b.pw }}" onChange="{{ b.onPw }}" onKeyDown="{{ b.onKey }}" placeholder="{{ t.lockPrompt }}" style="margin-top:auto;width:100%;background:var(--bg);border:1.5px solid var(--rule);color:var(--ink);font-family:'JetBrains Mono',monospace;font-size:13px;padding:10px 12px;outline:none;">
+                <button onClick="{{ b.onSubmit }}" style="background:var(--acc);color:#fff;border:1.5px solid var(--acc);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;padding:10px 14px;cursor:pointer;">{{ t.lockBtn }}</button>
+                <sc-if value="{{ b.err }}" hint-placeholder-val="{{ false }}"><span style="color:var(--acc);font-size:12px;">{{ t.lockErr }}</span></sc-if>
               </sc-if>
             </div>
           </sc-for>
         </div>
-        </sc-if>
-        <sc-if value="{{ booksIsDetail }}" hint-placeholder-val="{{ false }}">
-          <div data-reveal="1" style="animation:rise .6s ease both;max-width:680px;">
-            <button onClick="{{ goBack }}" style="background:transparent;color:var(--accent);border:none;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;padding:0;cursor:pointer;margin-bottom:24px;" style-hover="color:var(--accent-bright);">&#8592; {{ t.back }}</button>
-            <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);">{{ bookDetail.cat }}</span>
-              <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1px;color:var(--faint);">{{ bookDetail.st }}</span>
-            </div>
-            <h1 style="font-family:var(--display);font-weight:700;font-size:clamp(30px,5vw,46px);margin:14px 0 0;letter-spacing:.5px;line-height:1.1;">{{ bookDetail.t }}</h1>
-            <div style="height:2px;width:54px;background:var(--accent);margin:22px 0;"></div>
-            <p style="font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:1px;color:var(--faint);margin:0;text-transform:uppercase;">{{ bookDetail.a }}</p>
-            <sc-if value="{{ bookHasNote }}" hint-placeholder-val="{{ false }}">
-              <p style="font-family:'EB Garamond',serif;font-size:20px;line-height:1.7;color:var(--text);margin:20px 0 0;white-space:pre-line;">{{ bookDetail.note }}</p>
-            </sc-if>
-          </div>
-        </sc-if>
-      </section>
+      </div>
     </sc-if>
 
-    <footer style="border-top:1px solid var(--line);padding:30px clamp(18px,5vw,40px);max-width:1180px;margin:30px auto 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
-      <div style="display:flex;gap:11px;align-items:center;">
-        <img src="mascot.png" alt="" style="width:24px;height:24px;object-fit:contain;"/>
-        <span style="font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:3px;color:var(--text);">TAFI</span>
+    <!-- ============ NOVETATS ============ -->
+    <sc-if value="{{ isUpdates }}" hint-placeholder-val="{{ false }}">
+      <div data-pad style="padding:32px 56px 72px;">
+        <div style="border:1.5px solid var(--rule);background:var(--paper);">
+          <sc-for list="{{ updatesList }}" as="u" hint-placeholder-count="3">
+            <div data-row style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:28px;padding:28px;border-bottom:1px solid var(--line);">
+              <span style="font-size:13px;letter-spacing:1px;color:var(--acc);">{{ u.date }}</span>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <h2 style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:23px;line-height:1.05;margin:0;text-transform:uppercase;">{{ u.title }}</h2>
+                <p style="font-family:'EB Garamond',serif;font-size:19px;line-height:1.6;color:var(--muted);margin:0;white-space:pre-line;max-width:62ch;">{{ u.body }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
       </div>
-      <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--faint);letter-spacing:1px;">&#169; 2026 &middot; {{ t.footer }}</span>
-    </footer>
+    </sc-if>
 
+    <!-- ============ PERTINENCES ============ -->
+    <sc-if value="{{ isBelongings }}" hint-placeholder-val="{{ false }}">
+      <div data-pad style="padding:40px 56px 80px;display:flex;flex-direction:column;gap:20px;">
+        <span style="font-size:12px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;">04.1 — {{ t.computing }}</span>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px;">
+          <div style="border:1.5px solid var(--rule);background:var(--paper);">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-bottom:1.5px solid var(--rule);">
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.05;">{{ t.pcRubiusName }}</span><span style="font-size:11px;color:var(--faint);letter-spacing:1px;">{{ t.pcRubiusYears }}</span></div>
+              <span style="display:flex;align-items:center;gap:6px;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="width:7px;height:7px;background:var(--acc);"></span>{{ t.active }}</span>
+            </div>
+            <sc-for list="{{ t.pcRubiusRows }}" as="r" hint-placeholder-count="7">
+              <div style="display:grid;grid-template-columns:34% minmax(0,1fr);border-bottom:1px solid var(--line);font-size:13px;"><span style="padding:11px 18px;color:var(--faint);text-transform:uppercase;letter-spacing:1px;font-size:11px;border-right:1px solid var(--line);">{{ r.k }}</span><span style="padding:11px 18px;">{{ r.v }}</span></div>
+            </sc-for>
+          </div>
+          <div style="border:1.5px solid var(--rule);background:var(--paper);">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-bottom:1.5px solid var(--rule);">
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.05;">{{ t.laptopName }}</span><span style="font-size:11px;color:var(--faint);letter-spacing:1px;">{{ t.laptopSub }}</span></div>
+              <span style="display:flex;align-items:center;gap:6px;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="width:7px;height:7px;background:var(--acc);"></span>{{ t.active }}</span>
+            </div>
+            <sc-for list="{{ t.laptopRows }}" as="r" hint-placeholder-count="5">
+              <div style="display:grid;grid-template-columns:34% minmax(0,1fr);border-bottom:1px solid var(--line);font-size:13px;"><span style="padding:11px 18px;color:var(--faint);text-transform:uppercase;letter-spacing:1px;font-size:11px;border-right:1px solid var(--line);">{{ r.k }}</span><span style="padding:11px 18px;">{{ r.v }}</span></div>
+            </sc-for>
+          </div>
+          <div style="border:1.5px dashed var(--rule);background:var(--paper);opacity:.8;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border-bottom:1.5px dashed var(--rule);">
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.05;color:var(--muted);">{{ t.pcDarwinName }}</span><span style="font-size:11px;color:var(--faint);letter-spacing:1px;">{{ t.pcDarwinYears }}</span></div>
+              <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--faint);border:1px solid var(--line);padding:3px 8px;">{{ t.retired }}</span>
+            </div>
+            <sc-for list="{{ t.pcDarwinRows }}" as="r" hint-placeholder-count="7">
+              <div style="display:grid;grid-template-columns:34% minmax(0,1fr);border-bottom:1px solid var(--line);font-size:13px;color:var(--muted);"><span style="padding:11px 18px;color:var(--faint);text-transform:uppercase;letter-spacing:1px;font-size:11px;border-right:1px solid var(--line);">{{ r.k }}</span><span style="padding:11px 18px;">{{ r.v }}</span></div>
+            </sc-for>
+          </div>
+        </div>
+
+        <span style="font-size:12px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;margin-top:28px;">04.2 — {{ t.peripherals }}</span>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px;">
+          <div style="border:1.5px solid var(--rule);background:var(--paper);display:flex;flex-direction:column;">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-bottom:1.5px solid var(--rule);"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.05;">{{ t.keyboardName }}</span><span style="font-size:11px;color:var(--faint);letter-spacing:1px;">{{ t.keyboardSub }}</span></div>
+            <sc-for list="{{ t.keyboardRows }}" as="r" hint-placeholder-count="5">
+              <div style="display:grid;grid-template-columns:34% minmax(0,1fr);border-bottom:1px solid var(--line);font-size:13px;"><span style="padding:11px 18px;color:var(--faint);text-transform:uppercase;letter-spacing:1px;font-size:11px;border-right:1px solid var(--line);">{{ r.k }}</span><span style="padding:11px 18px;white-space:pre-line;">{{ r.v }}</span></div>
+            </sc-for>
+            <div aria-hidden="true" style="flex:1;display:grid;grid-template-columns:34% minmax(0,1fr);"><span style="border-right:1px solid var(--line);"></span></div>
+          </div>
+          <div style="border:1.5px solid var(--rule);background:var(--paper);display:flex;flex-direction:column;">
+            <div style="display:flex;flex-direction:column;gap:4px;padding:16px 18px;border-bottom:1.5px solid var(--rule);"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.05;">{{ t.keyboard2Name }}</span><span style="font-size:11px;color:var(--faint);letter-spacing:1px;">{{ t.keyboard2Sub }}</span></div>
+            <sc-for list="{{ t.keyboard2Rows }}" as="r" hint-placeholder-count="5">
+              <div style="display:grid;grid-template-columns:34% minmax(0,1fr);border-bottom:1px solid var(--line);font-size:13px;"><span style="padding:11px 18px;color:var(--faint);text-transform:uppercase;letter-spacing:1px;font-size:11px;border-right:1px solid var(--line);">{{ r.k }}</span><span style="padding:11px 18px;white-space:pre-line;">{{ r.v }}</span></div>
+            </sc-for>
+            <div aria-hidden="true" style="flex:1;display:grid;grid-template-columns:34% minmax(0,1fr);"><span style="border-right:1px solid var(--line);"></span></div>
+          </div>
+        </div>
+
+        <span style="font-size:12px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;margin-top:28px;">04.3 — {{ t.artisans }}</span>
+        <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:24px;text-transform:uppercase;line-height:1.05;">{{ t.dragonsTitle }}</span><span style="font-family:'EB Garamond',serif;font-size:18px;color:var(--muted);">{{ t.dragonsLead }}</span></div>
+        <div style="display:flex;flex-wrap:wrap;border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);align-self:flex-start;background:var(--paper);">
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><div style="width:240px;height:216px;background:url('dragons.jpg') -11px -93px / 769px auto no-repeat;"></div><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>D-01</span><span>Slain Rottermelon</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><div style="width:240px;height:216px;background:url('dragons.jpg') -264px -93px / 769px auto no-repeat;"></div><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>D-02</span><span>Slain Shenronington</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><div style="width:240px;height:216px;background:url('dragons.jpg') -519px -93px / 769px auto no-repeat;"></div><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>D-03</span><span>Slain Black Skull</span></figcaption></figure>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:24px;text-transform:uppercase;line-height:1.05;">{{ t.grimeyTitle }}</span><span style="font-family:'EB Garamond',serif;font-size:18px;color:var(--muted);">{{ t.grimeyLead }}</span></div>
+        <div style="display:flex;flex-wrap:wrap;border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);align-self:flex-start;background:var(--paper);">
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Garbo%20Puss%20v4%20Acid%20Punk.jpg" alt="Garbo Puss v4 Acid Punk" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-01</span><span>Garbo Puss v4</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Trash%20Panda%20v4%20Akira.jpg" alt="Trash Panda v4 Akira" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-02</span><span>Trash Panda v4</span></figcaption></figure>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:24px;text-transform:uppercase;line-height:1.05;">{{ t.doctorTitle }}</span><span style="font-family:'EB Garamond',serif;font-size:18px;color:var(--muted);">{{ t.doctorLead }}</span></div>
+        <div style="display:flex;flex-wrap:wrap;border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);align-self:flex-start;background:var(--paper);">
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Autopsy%20Exploratory%20Byte.jpg" alt="Autopsy Exploratory Byte" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-03</span><span>Autopsy Byte</span></figcaption></figure>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:24px;text-transform:uppercase;line-height:1.05;">{{ t.apostleTitle }}</span><span style="font-family:'EB Garamond',serif;font-size:18px;color:var(--muted);">{{ t.apostleLead }}</span></div>
+        <div style="display:flex;flex-wrap:wrap;border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);align-self:flex-start;background:var(--paper);">
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Apostle%20V2%20Black%20White.jpg" alt="Apostle V2 Black &amp; White" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-04</span><span>Apostle V2 B&amp;W</span></figcaption></figure>
+        </div>
+      </div>
+    </sc-if>
   </main>
+
+  <footer data-ftr style="display:grid;grid-template-columns:minmax(0,1fr) auto auto;border-top:1.5px solid var(--rule);background:var(--bg);font-size:11px;letter-spacing:1px;text-transform:uppercase;">
+    <span style="padding:18px 32px;display:flex;align-items:center;gap:10px;"><img src="mascot.png" alt="" style="width:22px;height:22px;object-fit:contain;">© 2026 · {{ t.footer }}</span>
+    <span style="padding:18px 24px;border-left:1.5px solid var(--rule);">{{ t.scale }}</span>
+    <span style="padding:18px 24px;border-left:1.5px solid var(--rule);">{{ sheetLabel }}</span>
+  </footer>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:880},&quot;accent&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#a51d2d&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;animLevel&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;subtle&quot;,&quot;standard&quot;,&quot;dramatic&quot;],&quot;default&quot;:&quot;standard&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;startLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ca&quot;,&quot;en&quot;],&quot;default&quot;:&quot;ca&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;titleFont&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Cinzel&quot;,&quot;Young Serif&quot;],&quot;default&quot;:&quot;Cinzel&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Tipografia&quot;},&quot;startTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;light&quot;,&quot;dark&quot;],&quot;default&quot;:&quot;light&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;startLang&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;ca&quot;,&quot;en&quot;],&quot;default&quot;:&quot;ca&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
 class Component extends DCLogic {
   constructor(props){
     super(props);
-    let theme = "dark";
-    let lang = (this.props && this.props.startLang) || "ca";
-    let fun = false;
+    let theme = (props && props.startTheme) || "light", lang = (props && props.startLang) || "ca", gothic = false;
     try {
-      const t = localStorage.getItem("tafi-theme"); if (t) theme = t;
+      const t = localStorage.getItem("tafi3-theme"); if (t) theme = t;
       const l = localStorage.getItem("tafi-lang"); if (l) lang = l;
-      const f = localStorage.getItem("tafi-fun"); if (f) fun = f === "1";
+      gothic = localStorage.getItem("tafi3-gothic") === "1";
     } catch(e){}
-    let section = "home", routeItem = null;
-    try { const parts = (location.hash || "").replace(/^#/, "").split("/"); const r = { "": "home", "home": "home", "journal": "journal", "projects": "projects", "updates": "updates", "belongings": "belongings", "books": "books" }; if (r[parts[0]] != null) section = r[parts[0]]; if (parts[1]) routeItem = decodeURIComponent(parts[1]); } catch(e){}
-    this.state = { theme: theme, lang: lang, section: section, item: routeItem, personality: fun, pwInput: {}, unlocked: {}, lockErr: {}, busy: {} };
+    const r = this.parseHash();
+    this.state = { theme, lang, gothic, section: r.section, item: r.item, pwInput: {}, unlocked: {}, lockErr: {} };
     this._keys = [];
     try { const rk = localStorage.getItem("tafi-keys"); if (rk) this._keys = JSON.parse(atob(rk)) || []; } catch(e){}
-    this.rootRef = (el) => { this.rootEl = el; };
-    this.mainRef = (el) => { this.mainEl = el; };
   }
-
-  componentDidMount(){ this.applySide(); this.autoUnlock(); this.ensureContent(); this._onHash = () => this.syncHash(); window.addEventListener("hashchange", this._onHash); }
-  ensureContent(n){ if (window.TAFI_CONTENT){ this.forceUpdate(); return; } if ((n || 0) < 50) setTimeout(() => this.ensureContent((n || 0) + 1), 100); }
-  componentWillUnmount(){ if (this._onHash) window.removeEventListener("hashchange", this._onHash); }
-  syncHash(){
-    const r = { "": "home", "home": "home", "journal": "journal", "projects": "projects", "updates": "updates", "belongings": "belongings", "books": "books" };
+  parseHash(){
+    const ok = { "": "home", home: "home", journal: "journal", projects: "projects", updates: "updates", belongings: "belongings", books: "books" };
     const parts = (location.hash || "").replace(/^#/, "").split("/");
-    const section = (r[parts[0]] != null) ? r[parts[0]] : "home";
-    const item = parts[1] ? decodeURIComponent(parts[1]) : null;
-    this.setState((s) => (s.section === section && s.item === item) ? null : { section: section, item: item });
+    return { section: ok[parts[0]] != null ? ok[parts[0]] : "home", item: parts[1] ? decodeURIComponent(parts[1]) : null };
   }
-
+  componentDidMount(){
+    this.applySide(); this.autoUnlock(); this.ensureContent();
+    this._onHash = () => { const r = this.parseHash(); this.setState(s => (s.section === r.section && s.item === r.item) ? null : r); };
+    window.addEventListener("hashchange", this._onHash);
+  }
+  componentWillUnmount(){ window.removeEventListener("hashchange", this._onHash); }
+  componentDidUpdate(prev, ps){
+    this.applySide();
+    if (ps.section !== this.state.section || ps.item !== this.state.item){ try { window.scrollTo(0, 0); } catch(e){} }
+  }
+  ensureContent(n){ if (window.TAFI_CONTENT){ this.forceUpdate(); return; } if ((n || 0) < 50) setTimeout(() => this.ensureContent((n || 0) + 1), 100); }
+  applySide(){
+    const root = document.documentElement;
+    root.setAttribute("data-theme", this.state.theme);
+    const TF = { "Cinzel": "'Cinzel',serif", "Young Serif": "'Young Serif',serif" };
+    const goth = "'New Rocker',serif";
+    root.style.setProperty("--goth", goth);
+    root.style.setProperty("--display", TF[(this.props && this.props.titleFont) || "Cinzel"] || TF["Cinzel"]);
+    root.setAttribute("lang", this.state.lang);
+    try { localStorage.setItem("tafi3-theme", this.state.theme); localStorage.setItem("tafi-lang", this.state.lang);  } catch(e){}
+  }
   secrets(){ return window.TAFI_SECRETS || { entries: [], projects: [], books: [] }; }
-  allLocked(){ const s = this.secrets(); return [].concat(s.entries || [], s.projects || [], s.books || []); }
   saveKeys(){ try { localStorage.setItem("tafi-keys", btoa(JSON.stringify(this._keys))); } catch(e){} }
   autoUnlock(retry){
     if (!window.TafiCrypto || !window.TafiCrypto.supported){ if ((retry || 0) < 40) setTimeout(() => this.autoUnlock((retry || 0) + 1), 150); return; }
-    const keys = this._keys || []; if (!keys.length) return;
-    this.allLocked().forEach((it) => {
-      if (this.state.unlocked[it.id]) return;
-      (async () => { for (const k of keys){ try { const txt = await window.TafiCrypto.unlock(it.blob, k); if (txt){ const obj = JSON.parse(txt); this.setState((st) => ({ unlocked: Object.assign({}, st.unlocked, { [it.id]: obj }) })); break; } } catch(e){} } })();
+    if (!this._keys.length) return;
+    const s = this.secrets();
+    [].concat(s.entries || [], s.projects || [], s.books || []).forEach((it) => {
+      (async () => { for (const k of this._keys){ try { const txt = await window.TafiCrypto.unlock(it.blob, k); if (txt){ const obj = JSON.parse(txt); this.setState(st => ({ unlocked: Object.assign({}, st.unlocked, { [it.id]: obj }) })); break; } } catch(e){} } })();
     });
   }
-  setPw(id, val){ this.setState((st) => ({ pwInput: Object.assign({}, st.pwInput, { [id]: val }), lockErr: Object.assign({}, st.lockErr, { [id]: false }) })); }
+  setPw(id, v){ this.setState(st => ({ pwInput: Object.assign({}, st.pwInput, { [id]: v }), lockErr: Object.assign({}, st.lockErr, { [id]: false }) })); }
   async submitUnlock(id, blob){
     const pwd = (this.state.pwInput[id] || "").trim(); if (!pwd) return;
-    if (!window.TafiCrypto || !window.TafiCrypto.supported){ this.setState((st) => ({ lockErr: Object.assign({}, st.lockErr, { [id]: true }) })); return; }
-    this.setState((st) => ({ busy: Object.assign({}, st.busy, { [id]: true }) }));
-    let obj = null; try { const txt = await window.TafiCrypto.unlock(blob, pwd); if (txt) obj = JSON.parse(txt); } catch(e){}
-    if (obj){ if (this._keys.indexOf(pwd) === -1){ this._keys.push(pwd); this.saveKeys(); } this.setState((st) => ({ unlocked: Object.assign({}, st.unlocked, { [id]: obj }), busy: Object.assign({}, st.busy, { [id]: false }), pwInput: Object.assign({}, st.pwInput, { [id]: "" }) })); }
-    else { this.setState((st) => ({ lockErr: Object.assign({}, st.lockErr, { [id]: true }), busy: Object.assign({}, st.busy, { [id]: false }) })); }
+    let obj = null;
+    if (window.TafiCrypto && window.TafiCrypto.supported){ try { const txt = await window.TafiCrypto.unlock(blob, pwd); if (txt) obj = JSON.parse(txt); } catch(e){} }
+    if (obj){ if (this._keys.indexOf(pwd) === -1){ this._keys.push(pwd); this.saveKeys(); } this.setState(st => ({ unlocked: Object.assign({}, st.unlocked, { [id]: obj }), pwInput: Object.assign({}, st.pwInput, { [id]: "" }) })); }
+    else this.setState(st => ({ lockErr: Object.assign({}, st.lockErr, { [id]: true }) }));
   }
-  relock(id){ this.setState((st) => { const u = Object.assign({}, st.unlocked); delete u[id]; return { unlocked: u }; }); }
+  relock(id){ this.setState(st => { const u = Object.assign({}, st.unlocked); delete u[id]; return { unlocked: u }; }); }
   buildViews(list){
     const lang = this.state.lang;
     return (list || []).map((it) => {
       const obj = this.state.unlocked[it.id];
       const c = obj ? (obj[lang] || obj.ca || obj.en || {}) : null;
-      const blob = it.blob;
       return {
         id: it.id, date: it.date || "", unlocked: !!obj, locked: !obj,
         t: c ? (c.t || "") : "", x: c ? (c.x || "") : "", d: c ? (c.d || "") : "", s: c ? (c.s || "") : "", a: c ? (c.a || "") : "", st: c ? (c.st || "") : "",
-        pw: this.state.pwInput[it.id] || "", err: !!this.state.lockErr[it.id], busy: !!this.state.busy[it.id],
+        pw: this.state.pwInput[it.id] || "", err: !!this.state.lockErr[it.id],
         onPw: (e) => this.setPw(it.id, e.target.value),
-        onKey: (e) => { if (e.key === "Enter") this.submitUnlock(it.id, blob); },
-        onSubmit: () => this.submitUnlock(it.id, blob),
+        onKey: (e) => { if (e.key === "Enter") this.submitUnlock(it.id, it.blob); },
+        onSubmit: () => this.submitUnlock(it.id, it.blob),
         onRelock: () => this.relock(it.id)
       };
     });
   }
-  componentDidUpdate(prev){
-    this.applySide();
-    if ((prev.section !== this.state.section || prev.item !== this.state.item) && this.mainEl){
-      try { this.mainEl.scrollTop = 0; window.scrollTo(0,0); } catch(e){}
-    }
-  }
-
-  applySide(){
-    const root = document.documentElement;
-    root.setAttribute("data-theme", this.state.theme);
-    root.setAttribute("data-anim", (this.props && this.props.animLevel) || "standard");
-    root.setAttribute("data-fun", this.state.personality ? "1" : "0");
-    root.style.setProperty("--display", this.state.personality ? "'Metal Mania', cursive" : "'Cinzel', serif");
-    const acc = this.props && this.props.accent;
-    if (acc){ root.style.setProperty("--accent", acc); }
-    try {
-      localStorage.setItem("tafi-theme", this.state.theme);
-      localStorage.setItem("tafi-lang", this.state.lang);
-      localStorage.setItem("tafi-fun", this.state.personality ? "1" : "0");
-    } catch(e){}
-  }
-
-  go(section){ this.route(section, null); }
-  open(section, item){ this.route(section, item); }
   route(section, item){
-    const map = { home: "home", journal: "journal", projects: "projects", updates: "updates", belongings: "belongings", books: "books" };
-    let h = map[section] || "home";
-    if (item) h += "/" + item;
-    try {
-      if (location.hash !== "#" + h) { location.hash = h; }
-      else { this.setState({ section: section, item: item || null }); }
-    } catch(e){ this.setState({ section: section, item: item || null }); }
+    const h = section + (item ? "/" + item : "");
+    try { if (location.hash !== "#" + h) location.hash = h; else this.setState({ section, item: item || null }); }
+    catch(e){ this.setState({ section, item: item || null }); }
   }
-  toggleTheme(){ this.setState((s) => ({ theme: s.theme === "dark" ? "light" : "dark" })); }
-  toggleLang(){ this.setState((s) => ({ lang: s.lang === "ca" ? "en" : "ca" })); }
-  toggleFun(){ this.setState((s) => ({ personality: !s.personality })); }
-
-  data(){
+  strings(){
     return {
       ca: {
-        brandTag: "diari",
-        kicker: "Diari personal \u00b7 tafi.cat",
-        headA: "Passió, motivació,",
-        headB: "i sang calenta.",
-        lede: "Un racó sobre tecnologia, finances i les eines que estimo. Aquí hi deso el que penso, el que construeixo i el que col\u00b7lecciono.",
-        term: [ {s:"$",t:"whoami"}, {s:"\u203a",t:"tafi — tecnologia & finances"}, {s:"$",t:"ls ~/"}, {s:"\u203a",t:"diari/  projectes/  pertinences/  llibres/"} ],
-        enter: "Comença a llegir",
-        enter2: "Veure pertinences",
-        indexTitle: "Què hi trobaràs",
-        readMore: "Llegir",
-        nav: { home:"Inici", journal:"Diari", projects:"Projectes", updates:"Actualitzacions", belongings:"Pertinences", books:"Llibres" },
-        cardDesc: { journal:"Recull d'idees soltes, en brut.", projects:"Projectes personals, explicats.", updates:"Canvis de rumb i de visió.", belongings:"Les eines que més aprecio.", books:"Lectures que deixen marca." },
-        journalTitle: "Diari",
-        journalLead: "Idees soltes, abans no s'escapin.",
-        entries: [
-          { date:"2026 \u00b7 06 \u00b7 12", tag:"Finances", t:"Sobre el risc que no es veu", x:"El risc real poques vegades surt als gràfics. Notes sobre cues, liquiditat i paciència." },
-          { date:"2026 \u00b7 05 \u00b7 28", tag:"Tecnologia", t:"Per què encara munto a mà", x:"Cada peça triada a consciència. El plaer de construir el que faràs servir cada dia." },
-          { date:"2026 \u00b7 05 \u00b7 09", tag:"Notes", t:"Apostes petites, partides llargues", x:"Sobre compondre en silenci i deixar que el temps faci la feina pesada." }
-        ],
-        projectsTitle: "Projectes",
-        projectsLead: "Coses que construeixo, en veu alta.",
-        projects: [
-          { t:"Ledger-09", d:"Eina personal per seguir cartera i despeses sense fulls de càlcul.", s:"En curs" },
-          { t:"Forja", d:"Banc de proves per a teclats, switches i firmware.", s:"Actiu" },
-          { t:"Atlas", d:"Notes connectades sobre macroeconomia i cicles.", s:"Llavor" }
-        ],
-        updatesTitle: "Actualitzacions",
-        updatesLead: "Canvis de rumb i de visió.",
-        updates: [
-          { v:"v3.0", date:"2026 \u00b7 06", d:"Redisseny complet. Mode fosc per defecte i bilingüe (CA/EN)." },
-          { v:"v2.0", date:"2025 \u00b7 11", d:"Migració a domini propi: tafi.cat." },
-          { v:"v1.0", date:"2024 \u00b7 03", d:"Primer diari públic. La llavor de tot això." }
-        ],
-        belongingsTitle: "Pertinences",
-        belongingsLead: "Les eines que més aprecio, i per què.",
-        computing: "Computació", peripherals: "Perifèrics", artisans: "Artisans",
-        active: "Actiu", retired: "Retirat",
-        pcRubiusName: "PC-Rubius-02", pcRubiusYears: "2026 — present",
-        pcDarwinName: "PC-Darwin-01", pcDarwinYears: "2020 — 2026",
-        keyboardName: "TKD Cycle 7", keyboardSub: "70% \u00b7 Void Elf",
-        pcRubiusRows: [
-          {k:"CPU",v:"Ryzen 7 9700X \u00b7 3.8 GHz"}, {k:"GPU",v:"RX 9060 XT 16GB \u00b7 Gigabyte Gaming OC"},
-          {k:"Placa base",v:"B850I AsRock Phantom Gaming"}, {k:"Font",v:"SF750 Corsair"},
-          {k:"RAM",v:"Corsair Pro 2×16GB \u00b7 6000 MHz CL48"}, {k:"Caixa",v:"Fractal Terra Jade"},
-          {k:"Disc",v:"WD_BLACK SN850X \u00b7 2 TB"}
-        ],
-        pcDarwinRows: [
-          {k:"CPU",v:"Ryzen 7 2700X \u00b7 3.7 GHz"}, {k:"GPU",v:"RTX 2060 6GB \u00b7 Gigabyte Gaming OC"},
-          {k:"Placa base",v:"B450 Aorus Elite V.2"}, {k:"Font",v:"Corsair TX650M"},
-          {k:"RAM",v:"Team Group Delta 2×8GB \u00b7 3200 MHz CL16"}, {k:"Caixa",v:"MSI MPG Gungnir 110R"},
-          {k:"Disc",v:"Kioxia Exceria 500GB SSD M.2"}
-        ],
-        keyboardRows: [ {k:"Model",v:"TKD Cycle 7 (70%)"}, {k:"Keycaps",v:"GMK Blot"}, {k:"Switches",v:"Vertex V1"}, {k:"Placa",v:"Alumini"} ],
-        dragonsTitle: "Els meus dracs",
-        dragonsLead: "Cada drac, un caigut.",
-        grimeyTitle: "Brut com ******",
-        grimeyLead: "Adorables animalets",
-        doctorTitle: "Doctor, tenim un problema!",
-        doctorLead: "Em temo que és massa tard...",
-        booksTitle: "Llibres",
-        booksLead: "Lectures que deixen marca. La biblioteca s'omplirà aviat.",
-        books: [
-          { cat:"Finances", t:"—", a:"Per afegir", st:"Llegint" },
-          { cat:"Filosofia", t:"—", a:"Per afegir", st:"A la llista" },
-          { cat:"Tècnic", t:"—", a:"Per afegir", st:"Llegit" },
-          { cat:"Ficció", t:"—", a:"Per afegir", st:"A la llista" }
-        ],
-        footer: "Fet amb intenció \u00b7 tafi.cat",
+        kicker: "Diari personal", headA: "Passió, motivació,", headB: "i sang calenta.",
+        lede: "Un racó sobre tecnologia, finances i les eines que estimo. Aquí hi deso el que penso, el que construeixo i el que col·lecciono.",
+        enter: "Comença a llegir", enter2: "Veure pertinences", seeAll: "Veure-ho tot", readMore: "Llegir", newChip: "Nou",
+        figAlt: "El rei banyut", figLabel: "Fig. 01 — El rei banyut", figSub: "Tinta sobre paper",
+        nav: { journal: "Diari", projects: "Projectes", books: "Llibres", belongings: "Pertinences", updates: "Novetats" },
+        lead: { journal: "Idees soltes, abans no s'escapin.", projects: "Coses que construeixo, en veu alta.", books: "Lectures que deixen marca.", belongings: "Les eines que més aprecio, i per què.", updates: "Canvis de rumb i de visió." },
+        sheet: "Full", locked1: "entrada xifrada", lockedN: "entrades xifrades",
+        computing: "Computació", peripherals: "Perifèrics", artisans: "Keycaps artesanals", active: "Actiu", retired: "Retirat",
+        pcRubiusName: "PC-Rubius-02", pcRubiusYears: "2026 — present", pcDarwinName: "PC-Darwin-01", pcDarwinYears: "2020 — 2026",
+        laptopName: "Laptop-MacBook Air", laptopSub: "M5 · 13,6 · Starlight", laptopRows: [{k:"Model",v:"MacBook Air 13,6"},{k:"CPU",v:"Apple M5"},{k:"Color",v:"Starlight"},{k:"RAM",v:"16 GB"},{k:"Disc",v:"512 GB SSD"}],
+        keyboardName: "TKD Cycle 7", keyboardSub: "70% · Void Elf",
+        pcRubiusRows: [{k:"CPU",v:"Ryzen 7 9700X · 3.8 GHz"},{k:"GPU",v:"RX 9060 XT 16GB · Gigabyte Gaming OC"},{k:"Placa base",v:"B850I AsRock Phantom Gaming"},{k:"Font",v:"SF750 Corsair"},{k:"RAM",v:"Corsair Pro 2×16GB · 6000 MHz CL48"},{k:"Caixa",v:"Fractal Terra Jade"},{k:"Disc",v:"WD_BLACK SN850X · 2 TB"}],
+        pcDarwinRows: [{k:"CPU",v:"Ryzen 7 2700X · 3.7 GHz"},{k:"GPU",v:"RTX 2060 6GB · Gigabyte Gaming OC"},{k:"Placa base",v:"B450 Aorus Elite V.2"},{k:"Font",v:"Corsair TX650M"},{k:"RAM",v:"Team Group Delta 2×8GB · 3200 MHz CL16"},{k:"Caixa",v:"MSI MPG Gungnir 110R"},{k:"Disc",v:"Kioxia Exceria 500GB SSD M.2"}],
+        keyboardRows: [{k:"Model",v:"TKD Cycle 7"},{k:"Keycaps",v:"GMK Tuzi"},{k:"Switches",v:"Vertex V1"},{k:"Placa",v:"Alumini"},{k:"Artisans",v:"Trash Panda v4 Akira"}],
+        keyboard2Name: "Apostole", keyboard2Sub: "65% · Dark",
+        keyboard2Rows: [{k:"Model",v:"Apostole"},{k:"PCB",v:"Gondolindrim"},{k:"Keycaps",v:"GMK Evil Dolch"},{k:"Switches",v:"Cherry Black"},{k:"Artisans",v:"Apostle V2 Black & White (trit)\nSlain Black Skull"}],
+        apostleTitle: "Apostle V2", apostleLead: "Black & White (trit).",
+        dragonsTitle: "Els meus dracs", dragonsLead: "Cada drac, un caigut.", grimeyTitle: "Brut com ******", grimeyLead: "Adorables animalets", doctorTitle: "Doctor, tenim un problema!", doctorLead: "Em temo que és massa tard...",
+        footer: "Dibuixat i muntat a mà", scale: "Escala 1:1",
         lockChip: "Xifrat", lockEntry: "Entrada xifrada", lockProject: "Projecte privat", lockBook: "Llibre estrella",
-        lockPrompt: "Contrasenya", lockBtn: "Desbloqueja", lockErr: "Contrasenya incorrecta", lockHint: "S'obre amb la teva clau o la mestra", relock: "Amaga", back: "Tornar"
+        lockPrompt: "Contrasenya", lockBtn: "Obrir", lockErr: "Contrasenya incorrecta", lockHint: "S'obre amb la teva clau o la mestra", relock: "Amaga", back: "Tornar",
+        author: "Autor"
       },
       en: {
-        brandTag: "journal",
-        kicker: "Personal journal \u00b7 tafi.cat",
-        headA: "Passion, motivation,",
-        headB: "& hot blood.",
+        kicker: "Personal journal", headA: "Passion, motivation,", headB: "& hot blood.",
         lede: "A corner for technology, finance, and the tools I cherish. Here I keep what I think, what I build, and what I collect.",
-        term: [ {s:"$",t:"whoami"}, {s:"\u203a",t:"tafi — technology & finance"}, {s:"$",t:"ls ~/"}, {s:"\u203a",t:"journal/  projects/  belongings/  books/"} ],
-        enter: "Start reading",
-        enter2: "See belongings",
-        indexTitle: "What you'll find",
-        readMore: "Read",
-        nav: { home:"Home", journal:"Journal", projects:"Projects", updates:"Updates", belongings:"Belongings", books:"Books" },
-        cardDesc: { journal:"Loose ideas, raw.", projects:"Personal projects, explained.", updates:"Shifts in course and vision.", belongings:"The tools I value most.", books:"Reads that leave a mark." },
-        journalTitle: "Journal",
-        journalLead: "Loose ideas, before they slip away.",
-        entries: [
-          { date:"2026 \u00b7 06 \u00b7 12", tag:"Finance", t:"On the risk you can't see", x:"Real risk rarely shows on the charts. Notes on tails, liquidity, and patience." },
-          { date:"2026 \u00b7 05 \u00b7 28", tag:"Tech", t:"Why I still build by hand", x:"Every part chosen on purpose. The joy of building the thing you'll use every day." },
-          { date:"2026 \u00b7 05 \u00b7 09", tag:"Notes", t:"Small bets, long games", x:"On compounding quietly and letting time do the heavy lifting." }
-        ],
-        projectsTitle: "Projects",
-        projectsLead: "Things I build, out loud.",
-        projects: [
-          { t:"Ledger-09", d:"A personal tool to track portfolio and spending without spreadsheets.", s:"In progress" },
-          { t:"Forja", d:"A test bench for keyboards, switches, and firmware.", s:"Active" },
-          { t:"Atlas", d:"Connected notes on macroeconomics and cycles.", s:"Seed" }
-        ],
-        updatesTitle: "Updates",
-        updatesLead: "Shifts in course and vision.",
-        updates: [
-          { v:"v3.0", date:"2026 \u00b7 06", d:"Full redesign. Dark by default and bilingual (CA/EN)." },
-          { v:"v2.0", date:"2025 \u00b7 11", d:"Moved to my own domain: tafi.cat." },
-          { v:"v1.0", date:"2024 \u00b7 03", d:"First public journal. The seed of all this." }
-        ],
-        belongingsTitle: "Belongings",
-        belongingsLead: "The tools I value most, and why.",
-        computing: "Computing", peripherals: "Peripherals", artisans: "Artisans",
-        active: "Active", retired: "Retired",
-        pcRubiusName: "PC-Rubius-02", pcRubiusYears: "2026 — present",
-        pcDarwinName: "PC-Darwin-01", pcDarwinYears: "2020 — 2026",
-        keyboardName: "TKD Cycle 7", keyboardSub: "70% \u00b7 Void Elf",
-        pcRubiusRows: [
-          {k:"CPU",v:"Ryzen 7 9700X \u00b7 3.8 GHz"}, {k:"GPU",v:"RX 9060 XT 16GB \u00b7 Gigabyte Gaming OC"},
-          {k:"Motherboard",v:"B850I AsRock Phantom Gaming"}, {k:"PSU",v:"SF750 Corsair"},
-          {k:"RAM",v:"Corsair Pro 2×16GB \u00b7 6000 MHz CL48"}, {k:"Case",v:"Fractal Terra Jade"},
-          {k:"Storage",v:"WD_BLACK SN850X \u00b7 2 TB"}
-        ],
-        pcDarwinRows: [
-          {k:"CPU",v:"Ryzen 7 2700X \u00b7 3.7 GHz"}, {k:"GPU",v:"RTX 2060 6GB \u00b7 Gigabyte Gaming OC"},
-          {k:"Motherboard",v:"B450 Aorus Elite V.2"}, {k:"PSU",v:"Corsair TX650M"},
-          {k:"RAM",v:"Team Group Delta 2×8GB \u00b7 3200 MHz CL16"}, {k:"Case",v:"MSI MPG Gungnir 110R"},
-          {k:"Storage",v:"Kioxia Exceria 500GB SSD M.2"}
-        ],
-        keyboardRows: [ {k:"Model",v:"TKD Cycle 7 (70%)"}, {k:"Keycaps",v:"GMK Blot"}, {k:"Switches",v:"Vertex V1"}, {k:"Plate",v:"Aluminium"} ],
-        dragonsTitle: "My dragons",
-        dragonsLead: "Each dragon, a fallen one.",
-        grimeyTitle: "Grimey as ****",
-        grimeyLead: "Adorable little critters",
-        doctorTitle: "Doctor, we have a problem!",
-        doctorLead: "I'm afraid it's too late...",
-        booksTitle: "Books",
-        booksLead: "Reads that leave a mark. The library fills soon.",
-        books: [
-          { cat:"Finance", t:"—", a:"To add", st:"Reading" },
-          { cat:"Philosophy", t:"—", a:"To add", st:"Queued" },
-          { cat:"Technical", t:"—", a:"To add", st:"Read" },
-          { cat:"Fiction", t:"—", a:"To add", st:"Queued" }
-        ],
-        footer: "Made with intent \u00b7 tafi.cat",
+        enter: "Start reading", enter2: "See belongings", seeAll: "See all", readMore: "Read", newChip: "New",
+        figAlt: "The horned king", figLabel: "Fig. 01 — The horned king", figSub: "Ink on paper",
+        nav: { journal: "Journal", projects: "Projects", books: "Books", belongings: "Belongings", updates: "Updates" },
+        lead: { journal: "Loose ideas, before they slip away.", projects: "Things I build, out loud.", books: "Reads that leave a mark.", belongings: "The tools I value most, and why.", updates: "Shifts in course and vision." },
+        sheet: "Sheet", locked1: "encrypted entry", lockedN: "encrypted entries",
+        computing: "Computing", peripherals: "Peripherals", artisans: "Artisan keycaps", active: "Active", retired: "Retired",
+        pcRubiusName: "PC-Rubius-02", pcRubiusYears: "2026 — present", pcDarwinName: "PC-Darwin-01", pcDarwinYears: "2020 — 2026",
+        laptopName: "Laptop-MacBook Air", laptopSub: "M5 · 13.6 · Starlight", laptopRows: [{k:"Model",v:"MacBook Air 13.6"},{k:"CPU",v:"Apple M5"},{k:"Colour",v:"Starlight"},{k:"RAM",v:"16 GB"},{k:"Storage",v:"512 GB SSD"}],
+        keyboardName: "TKD Cycle 7", keyboardSub: "70% · Void Elf",
+        pcRubiusRows: [{k:"CPU",v:"Ryzen 7 9700X · 3.8 GHz"},{k:"GPU",v:"RX 9060 XT 16GB · Gigabyte Gaming OC"},{k:"Motherboard",v:"B850I AsRock Phantom Gaming"},{k:"PSU",v:"SF750 Corsair"},{k:"RAM",v:"Corsair Pro 2×16GB · 6000 MHz CL48"},{k:"Case",v:"Fractal Terra Jade"},{k:"Storage",v:"WD_BLACK SN850X · 2 TB"}],
+        pcDarwinRows: [{k:"CPU",v:"Ryzen 7 2700X · 3.7 GHz"},{k:"GPU",v:"RTX 2060 6GB · Gigabyte Gaming OC"},{k:"Motherboard",v:"B450 Aorus Elite V.2"},{k:"PSU",v:"Corsair TX650M"},{k:"RAM",v:"Team Group Delta 2×8GB · 3200 MHz CL16"},{k:"Case",v:"MSI MPG Gungnir 110R"},{k:"Storage",v:"Kioxia Exceria 500GB SSD M.2"}],
+        keyboardRows: [{k:"Model",v:"TKD Cycle 7"},{k:"Keycaps",v:"GMK Tuzi"},{k:"Switches",v:"Vertex V1"},{k:"Plate",v:"Aluminium"},{k:"Artisans",v:"Trash Panda v4 Akira"}],
+        keyboard2Name: "Apostole", keyboard2Sub: "65% · Dark",
+        keyboard2Rows: [{k:"Model",v:"Apostole"},{k:"PCB",v:"Gondolindrim"},{k:"Keycaps",v:"GMK Evil Dolch"},{k:"Switches",v:"Cherry Black"},{k:"Artisans",v:"Apostle V2 Black & White (trit)\nSlain Black Skull"}],
+        apostleTitle: "Apostle V2", apostleLead: "Black & White (trit).",
+        dragonsTitle: "My dragons", dragonsLead: "Each dragon, a fallen one.", grimeyTitle: "Grimey as ****", grimeyLead: "Adorable little critters", doctorTitle: "Doctor, we have a problem!", doctorLead: "I'm afraid it's too late...",
+        footer: "Drawn and built by hand", scale: "Scale 1:1",
         lockChip: "Encrypted", lockEntry: "Encrypted entry", lockProject: "Private project", lockBook: "Star book",
-        lockPrompt: "Password", lockBtn: "Unlock", lockErr: "Wrong password", lockHint: "Opens with your key or the master", relock: "Hide", back: "Back"
+        lockPrompt: "Password", lockBtn: "Open", lockErr: "Wrong password", lockHint: "Opens with your key or the master", relock: "Hide", back: "Back",
+        author: "Author"
       }
     };
   }
-
   renderVals(){
-    const t = this.data()[this.state.lang];
-    const sec = this.state.section;
-    const order = ["home","journal","projects","updates","belongings","books"];
-    const nav = order.map((id) => ({
-      id: id, label: t.nav[id], active: id === sec,
-      color: id === sec ? "var(--accent-bright)" : "var(--muted)",
-      onClick: () => this.go(id)
-    }));
-    const cards = ["journal","projects","updates","belongings","books"].map((id) => ({
-      label: t.nav[id], d: t.cardDesc[id], onClick: () => this.go(id)
-    }));
-    const item = this.state.item;
-    const lang = this.state.lang;
-    const C = window.TAFI_CONTENT || null;
+    const lang = this.state.lang, t = this.strings()[lang], sec = this.state.section, item = this.state.item;
+    const C = window.TAFI_CONTENT || { journal: [], projects: [], books: [], updates: [] };
     const pick = (f) => (f && typeof f === "object") ? (f[lang] || f.ca || f.en || "") : (f || "");
-    const slugify = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
-    let journalList, projectsList, booksList, updatesList;
-    if (C) {
-      journalList = (C.journal || []).map((o, i) => { const slug = o.slug || slugify(pick(o.title)) || ("entry-" + i); return { slug: slug, date: o.date || "", tag: pick(o.tag), t: pick(o.title), x: pick(o.excerpt) || pick(o.body).slice(0, 170), body: pick(o.body), onOpen: () => this.open("journal", slug) }; });
-      projectsList = (C.projects || []).map((o, i) => { const slug = o.slug || slugify(pick(o.title)) || ("project-" + i); return { slug: slug, s: pick(o.status), t: pick(o.title), d: pick(o.excerpt) || pick(o.body).slice(0, 170), body: pick(o.body), onOpen: () => this.open("projects", slug) }; });
-      booksList = (C.books || []).map((o, i) => { const slug = o.slug || slugify(pick(o.title)) || ("book-" + i); return { slug: slug, cat: pick(o.category), st: pick(o.status), t: pick(o.title), a: pick(o.author), note: pick(o.note), onOpen: () => this.open("books", slug) }; });
-      updatesList = (C.updates || []).map((o) => ({ date: o.date || "", title: pick(o.title), body: pick(o.body) }));
-    } else {
-      const SLUGS = { journal: ["risk-you-cant-see", "build-by-hand", "small-bets-long-games"], projects: ["ledger-09", "forja", "atlas"], books: ["finance", "philosophy", "technical", "fiction"] };
-      const mk = (arr, kind) => (arr || []).map((o, i) => { const slug = (SLUGS[kind] && SLUGS[kind][i]) ? SLUGS[kind][i] : (kind.charAt(0) + i); return Object.assign({ body: o.x, note: "" }, o, { slug: slug, onOpen: () => this.open(kind, slug) }); });
-      journalList = mk(t.entries, "journal"); projectsList = mk(t.projects, "projects"); booksList = mk(t.books, "books");
-      updatesList = (t.updates || []).map((u) => ({ date: u.date || "", title: u.v || "", body: u.d || "" }));
-    }
-    const findBy = (arr) => arr.filter((o) => o.slug === item)[0] || null;
-    const journalDetail = (sec === "journal" && item) ? findBy(journalList) : null;
-    const projectDetail = (sec === "projects" && item) ? findBy(projectsList) : null;
-    const bookDetail = (sec === "books" && item) ? findBy(booksList) : null;
+    const pad = (i) => String(i + 1).padStart(2, "0");
+    const mins = (s) => Math.max(1, Math.round(String(s || "").split(/\s+/).length / 200));
+    const ORDER = ["journal", "projects", "books", "belongings", "updates"];
+    const NUM = { home: "00", journal: "01", projects: "02", books: "03", belongings: "04", updates: "05" };
+    const journalList = (C.journal || []).map((o, i) => ({ num: pad(i), slug: o.slug, date: (o.date || "").replace(/\s·\s/g, "."), tag: pick(o.tag), t: pick(o.title), x: pick(o.excerpt) || pick(o.body).slice(0, 170), body: pick(o.body), mins: mins(pick(o.body)), onOpen: () => this.route("journal", o.slug) }));
+    const projectsList = (C.projects || []).map((o, i) => ({ num: pad(i), slug: o.slug, s: pick(o.status), t: pick(o.title), d: pick(o.excerpt), body: pick(o.body), onOpen: () => this.route("projects", o.slug) }));
+    const booksList = (C.books || []).map((o) => ({ slug: o.slug, cat: pick(o.category), st: pick(o.status), t: pick(o.title), a: pick(o.author), note: pick(o.note), onOpen: () => this.route("books", o.slug) }));
+    const updatesList = (C.updates || []).map((o) => ({ date: (o.date || "").replace(/\s·\s/g, "."), title: pick(o.title), body: pick(o.body) }));
+    const find = (arr) => arr.filter(o => o.slug === item)[0] || null;
+    let detail = null;
+    if (item && sec === "journal"){ const e = find(journalList); if (e) detail = { chip: e.tag, meta: e.date + " · " + e.mins + " min", t: e.t, body: e.body, foot: "§01 · " + e.num }; }
+    if (item && sec === "projects"){ const p = find(projectsList); if (p) detail = { chip: p.s, meta: "P-" + p.num, t: p.t, body: p.body, foot: "§02 · P-" + p.num }; }
+    if (item && sec === "books"){ const b = find(booksList); if (b) detail = { chip: b.cat, meta: b.st + " · " + b.a, t: b.t, body: b.note || "—", foot: "§03" }; }
+    const lockedEntries = this.buildViews(this.secrets().entries);
+    const nLocked = lockedEntries.filter(e => e.locked).length;
+    const nav = ORDER.map((id) => { const on = id === sec; return { num: NUM[id], label: t.nav[id], bg: on ? "var(--ink)" : "transparent", fg: on ? "var(--bg)" : "var(--ink)", onClick: () => this.route(id) }; });
+    const isList = sec !== "home" && !detail;
+    const light = this.state.theme === "light", ca = lang === "ca";
     return {
-      t: t,
-      nav: nav,
-      cards: cards,
-      rootRef: this.rootRef,
-      mainRef: this.mainRef,
-      goHome: () => this.go("home"),
-      enterJournal: () => this.go("journal"),
-      enterBelongings: () => this.go("belongings"),
-      onToggleTheme: () => this.toggleTheme(),
-      onToggleLang: () => this.toggleLang(),
-      onToggleFun: () => this.toggleFun(),
-      funOn: this.state.personality,
-      funColor: this.state.personality ? "var(--accent-bright)" : "var(--faint)",
-      showEmbers: this.state.personality || (((this.props && this.props.animLevel) || "standard") === "dramatic"),
-      langOther: this.state.lang === "ca" ? "EN" : "CA",
-      showUK: this.state.lang === "ca",
-      showCAT: this.state.lang === "en",
-      themeIsDark: this.state.theme === "dark",
-      themeIsLight: this.state.theme === "light",
-      isDramatic: ((this.props && this.props.animLevel) || "standard") === "dramatic",
-      isHome: sec === "home",
-      isJournal: sec === "journal",
-      isProjects: sec === "projects",
-      isUpdates: sec === "updates",
-      isBelongings: sec === "belongings",
-      isBooks: sec === "books",
-      lockedEntries: this.buildViews((this.secrets().entries) || []),
-      lockedProjects: this.buildViews((this.secrets().projects) || []),
-      lockedBooks: this.buildViews((this.secrets().books) || []),
-      journalList: journalList, projectsList: projectsList, booksList: booksList, updatesList: updatesList,
-      journalDetail: journalDetail, projectDetail: projectDetail, bookDetail: bookDetail,
-      journalIsDetail: !!journalDetail, journalIsList: !journalDetail,
-      projectsIsDetail: !!projectDetail, projectsIsList: !projectDetail,
-      booksIsDetail: !!bookDetail, booksIsList: !bookDetail,
-      bookHasNote: !!(bookDetail && bookDetail.note),
-      goBack: () => this.go(this.state.section)
+      t, nav, detail, hasDetail: !!detail,
+      sheetLabel: t.sheet + " " + NUM[sec] + " / 05",
+      goHome: () => this.route("home"), enterJournal: () => this.route("journal"), enterBelongings: () => this.route("belongings"), enterProjects: () => this.route("projects"),
+      goBack: () => this.route(sec),
+      onToggleTheme: () => this.setState(s => ({ theme: s.theme === "dark" ? "light" : "dark" })),
+      onToggleGothic: () => this.setState(s => ({ gothic: !s.gothic })),
+      gothicColor: this.state.gothic ? "var(--acc)" : "var(--faint)",
+      themeIsLight: light, themeIsDark: !light,
+      setCA: () => this.setState({ lang: "ca" }), setEN: () => this.setState({ lang: "en" }),
+      caBg: ca ? "var(--acc)" : "transparent", caFg: ca ? "#fff" : "var(--ink)",
+      enBg: ca ? "transparent" : "var(--acc)", enFg: ca ? "var(--ink)" : "#fff",
+      isHome: sec === "home", isUpdates: sec === "updates" && isList, isBelongings: sec === "belongings",
+      showSectionHead: isList, secNum: NUM[sec], secSheet: t.sheet + " " + NUM[sec], secTitle: t.nav[sec] || "", secLead: (t.lead && t.lead[sec]) || "",
+      journalListView: sec === "journal" && !detail, projectsListView: sec === "projects" && !detail, booksListView: sec === "books" && !detail,
+      journalList, projectsList, booksList, updatesList,
+      latest: journalList[0] || {}, hasLatest: journalList.length > 0, olderEntries: journalList.slice(1, 3),
+      hasLocked: nLocked > 0, lockedCountLabel: nLocked + " " + (nLocked === 1 ? t.locked1 : t.lockedN),
+      lockedEntries, lockedProjects: this.buildViews(this.secrets().projects), lockedBooks: this.buildViews(this.secrets().books)
     };
   }
 }
