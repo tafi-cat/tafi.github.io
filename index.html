@@ -150,17 +150,24 @@ a:hover{color:var(--acc2);}
         <button onClick="{{ enterProjects }}" style="align-self:flex-start;display:flex;align-items:center;gap:12px;background:none;border:none;border-bottom:1.5px solid var(--acc);padding:0 0 6px;color:var(--acc);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;" style-hover="color:var(--acc2);border-color:var(--acc2);">§02 — {{ t.nav.projects }}<span aria-hidden="true">→</span></button>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);background:var(--paper);">
           <sc-for list="{{ projectsList }}" as="p" hint-placeholder-count="3">
-            <div onClick="{{ p.onOpen }}" style="padding:24px;display:flex;flex-direction:column;gap:10px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);cursor:pointer;" style-hover="background:var(--plate);">
+            <div style="padding:24px;display:flex;flex-direction:column;gap:10px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);">
               <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--faint);">P-{{ p.num }}</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;background:var(--acc);"></span>{{ p.s }}</span></div>
               <span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:26px;text-transform:uppercase;line-height:1.05;">{{ p.t }}</span>
               <span style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.45;color:var(--muted);">{{ p.d }}</span>
+              <span style="margin-top:auto;display:flex;align-items:center;gap:8px;color:var(--acc);letter-spacing:1px;text-transform:uppercase;font-size:11px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"></path></svg>{{ t.lockChip }}</span>
             </div>
           </sc-for>
         </div>
       </div>
 
       <div data-pad style="padding:40px 56px 64px;display:flex;flex-direction:column;gap:20px;">
-        <button onClick="{{ enterBelongings }}" style="align-self:flex-start;display:flex;align-items:center;gap:12px;background:none;border:none;border-bottom:1.5px solid var(--acc);padding:0 0 6px;color:var(--acc);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;" style-hover="color:var(--acc2);border-color:var(--acc2);">§04 — {{ t.nav.belongings }} / {{ t.artisans }}<span aria-hidden="true">→</span></button>
+        <button onClick="{{ enterBelongings }}" style="align-self:flex-start;display:flex;align-items:center;gap:12px;background:none;border:none;border-bottom:1.5px solid var(--acc);padding:0 0 6px;color:var(--acc);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;" style-hover="color:var(--acc2);border-color:var(--acc2);">§04 — {{ t.nav.belongings }}<span aria-hidden="true">→</span></button>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);background:var(--paper);">
+          <div onClick="{{ enterBelongings }}" style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);cursor:pointer;" style-hover="background:var(--plate);"><div style="display:flex;justify-content:space-between;gap:12px;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--acc);">04.1</span><span style="color:var(--faint);">{{ t.computing }}</span></div><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.05;">{{ t.pcRubiusName }}</span><span style="font-size:12px;color:var(--muted);letter-spacing:.5px;">{{ t.pcRubiusYears }}</span></div>
+          <div onClick="{{ enterBelongings }}" style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);cursor:pointer;" style-hover="background:var(--plate);"><div style="display:flex;justify-content:space-between;gap:12px;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--acc);">04.1</span><span style="color:var(--faint);">{{ t.computing }}</span></div><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.05;">{{ t.laptopName }}</span><span style="font-size:12px;color:var(--muted);letter-spacing:.5px;">{{ t.laptopSub }}</span></div>
+          <div onClick="{{ enterBelongings }}" style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);cursor:pointer;" style-hover="background:var(--plate);"><div style="display:flex;justify-content:space-between;gap:12px;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--acc);">04.2</span><span style="color:var(--faint);">{{ t.peripherals }}</span></div><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.05;">{{ t.keyboardName }}</span><span style="font-size:12px;color:var(--muted);letter-spacing:.5px;">{{ t.keyboardSub }}</span></div>
+          <div onClick="{{ enterBelongings }}" style="display:flex;flex-direction:column;gap:8px;padding:20px 22px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);cursor:pointer;" style-hover="background:var(--plate);"><div style="display:flex;justify-content:space-between;gap:12px;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--acc);">04.2</span><span style="color:var(--faint);">{{ t.peripherals }}</span></div><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:21px;text-transform:uppercase;line-height:1.05;">{{ t.keyboard2Name }}</span><span style="font-size:12px;color:var(--muted);letter-spacing:.5px;">{{ t.keyboard2Sub }}</span></div>
+        </div>
       </div>
     </sc-if>
 
@@ -236,11 +243,11 @@ a:hover{color:var(--acc2);}
       <div data-pad style="padding:32px 56px 72px;">
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);background:var(--paper);">
           <sc-for list="{{ projectsList }}" as="p" hint-placeholder-count="3">
-            <div onClick="{{ p.onOpen }}" style="padding:28px;display:flex;flex-direction:column;gap:12px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);cursor:pointer;min-height:220px;" style-hover="background:var(--plate);">
+            <div style="padding:28px;display:flex;flex-direction:column;gap:12px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);min-height:220px;">
               <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--faint);">P-{{ p.num }}</span><span style="display:flex;align-items:center;gap:6px;"><span style="width:7px;height:7px;background:var(--acc);"></span>{{ p.s }}</span></div>
               <span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:30px;text-transform:uppercase;line-height:1.05;">{{ p.t }}</span>
               <span style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.5;color:var(--muted);">{{ p.d }}</span>
-              <span style="margin-top:auto;font-size:12px;">{{ t.readMore }} →</span>
+              <span style="margin-top:auto;font-size:12px;display:flex;align-items:center;gap:8px;color:var(--acc);letter-spacing:1px;text-transform:uppercase;font-size:11px;"><svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 8V6a3 3 0 1 1 6 0v3H9Z"></path></svg>{{ t.lockChip }}</span>
             </div>
           </sc-for>
           <sc-for list="{{ lockedProjects }}" as="p" hint-placeholder-count="1">
@@ -296,18 +303,17 @@ a:hover{color:var(--acc2);}
       </div>
     </sc-if>
 
-    <!-- ============ NOVETATS ============ -->
+    <!-- ============ SUPPORTED REPOS ============ -->
     <sc-if value="{{ isUpdates }}" hint-placeholder-val="{{ false }}">
       <div data-pad style="padding:32px 56px 72px;">
-        <div style="border:1.5px solid var(--rule);background:var(--paper);">
-          <sc-for list="{{ updatesList }}" as="u" hint-placeholder-count="3">
-            <div data-row style="display:grid;grid-template-columns:140px minmax(0,1fr);gap:28px;padding:28px;border-bottom:1px solid var(--line);">
-              <span style="font-size:13px;letter-spacing:1px;color:var(--acc);">{{ u.date }}</span>
-              <div style="display:flex;flex-direction:column;gap:8px;">
-                <h2 style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:23px;line-height:1.05;margin:0;text-transform:uppercase;">{{ u.title }}</h2>
-                <p style="font-family:'EB Garamond',serif;font-size:19px;line-height:1.6;color:var(--muted);margin:0;white-space:pre-line;max-width:62ch;">{{ u.body }}</p>
-              </div>
-            </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);background:var(--paper);">
+          <sc-for list="{{ reposList }}" as="r" hint-placeholder-count="4">
+            <a href="{{ r.url }}" target="_blank" rel="noopener" style="display:flex;flex-direction:column;gap:14px;padding:24px 26px 26px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);color:var(--ink);text-decoration:none;" style-hover="background:var(--bg);">
+              <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span style="color:var(--acc);">R-{{ r.num }}</span><span style="color:var(--faint);">{{ r.kind }}</span></div>
+              <h2 style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:23px;line-height:1.05;margin:0;text-transform:uppercase;">{{ r.name }}</h2>
+              <p style="font-family:'EB Garamond',serif;font-size:18px;line-height:1.55;color:var(--muted);margin:0;text-wrap:pretty;">{{ r.why }}</p>
+              <span style="margin-top:auto;padding-top:10px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;font-size:12px;letter-spacing:.5px;color:var(--acc);"><span>github.com/{{ r.repo }}</span><span aria-hidden="true">↗</span></span>
+            </a>
           </sc-for>
         </div>
       </div>
@@ -368,22 +374,22 @@ a:hover{color:var(--acc2);}
         <span style="font-size:12px;letter-spacing:2px;color:var(--acc);text-transform:uppercase;margin-top:28px;">04.3 — {{ t.artisans }}</span>
         <div style="display:flex;flex-direction:column;gap:6px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:24px;text-transform:uppercase;line-height:1.05;">{{ t.dragonsTitle }}</span><span style="font-family:'EB Garamond',serif;font-size:18px;color:var(--muted);">{{ t.dragonsLead }}</span></div>
         <div style="display:flex;flex-wrap:wrap;border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);align-self:flex-start;background:var(--paper);">
-          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><div style="width:240px;height:216px;background:url('dragons.jpg') -11px -93px / 769px auto no-repeat;"></div><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>D-01</span><span>Slain Rottermelon</span></figcaption></figure>
-          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><div style="width:240px;height:216px;background:url('dragons.jpg') -264px -93px / 769px auto no-repeat;"></div><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>D-02</span><span>Slain Shenronington</span></figcaption></figure>
-          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><div style="width:240px;height:216px;background:url('dragons.jpg') -519px -93px / 769px auto no-repeat;"></div><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>D-03</span><span>Slain Black Skull</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><div style="width:240px;height:216px;background:url('dragons.jpg') -11px -93px / 769px auto no-repeat;"></div><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>D-01</span><span>Rottermelon</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><div style="width:240px;height:216px;background:url('dragons.jpg') -264px -93px / 769px auto no-repeat;"></div><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>D-02</span><span>Shenronington</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><div style="width:240px;height:216px;background:url('dragons.jpg') -519px -93px / 769px auto no-repeat;"></div><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>D-03</span><span>Black Skull</span></figcaption></figure>
         </div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:24px;text-transform:uppercase;line-height:1.05;">{{ t.grimeyTitle }}</span><span style="font-family:'EB Garamond',serif;font-size:18px;color:var(--muted);">{{ t.grimeyLead }}</span></div>
         <div style="display:flex;flex-wrap:wrap;border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);align-self:flex-start;background:var(--paper);">
-          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Garbo%20Puss%20v4%20Acid%20Punk.jpg" alt="Garbo Puss v4 Acid Punk" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-01</span><span>Garbo Puss v4</span></figcaption></figure>
-          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Trash%20Panda%20v4%20Akira.jpg" alt="Trash Panda v4 Akira" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-02</span><span>Trash Panda v4</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Garbo%20Puss%20v4%20Acid%20Punk.jpg" alt="Garbo Puss v4 Acid Punk" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-01</span><span>Acid Punk</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Trash%20Panda%20v4%20Akira.jpg" alt="Trash Panda v4 Akira" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-02</span><span>Akira</span></figcaption></figure>
         </div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:24px;text-transform:uppercase;line-height:1.05;">{{ t.doctorTitle }}</span><span style="font-family:'EB Garamond',serif;font-size:18px;color:var(--muted);">{{ t.doctorLead }}</span></div>
         <div style="display:flex;flex-wrap:wrap;border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);align-self:flex-start;background:var(--paper);">
-          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Autopsy%20Exploratory%20Byte.jpg" alt="Autopsy Exploratory Byte" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-03</span><span>Autopsy Byte</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Autopsy%20Exploratory%20Byte.jpg" alt="Autopsy Exploratory Byte" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-03</span><span>Byte</span></figcaption></figure>
         </div>
         <div style="display:flex;flex-direction:column;gap:6px;margin-top:16px;"><span style="font-family:var(--display);font-stretch:75%;font-weight:700;font-size:24px;text-transform:uppercase;line-height:1.05;">{{ t.apostleTitle }}</span><span style="font-family:'EB Garamond',serif;font-size:18px;color:var(--muted);">{{ t.apostleLead }}</span></div>
         <div style="display:flex;flex-wrap:wrap;border-top:1.5px solid var(--rule);border-left:1.5px solid var(--rule);align-self:flex-start;background:var(--paper);">
-          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Apostle%20V2%20Black%20White.jpg" alt="Apostle V2 Black &amp; White" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-04</span><span>Apostle V2 B&amp;W</span></figcaption></figure>
+          <figure style="margin:0;width:240px;border-right:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);"><img src="Apostle%20V2%20Black%20White.jpg" alt="Apostle V2 Black &amp; White" style="display:block;width:240px;height:216px;object-fit:cover;"><figcaption style="display:flex;justify-content:space-between;padding:12px 14px;border-top:1.5px solid var(--rule);font-size:11px;letter-spacing:1px;text-transform:uppercase;"><span>A-04</span><span>B&amp;W</span></figcaption></figure>
         </div>
       </div>
     </sc-if>
@@ -484,12 +490,13 @@ class Component extends DCLogic {
         lede: "Un racó sobre tecnologia, finances i les eines que estimo. Aquí hi deso el que penso, el que construeixo i el que col·lecciono.",
         enter: "Comença a llegir", enter2: "Veure pertinences", seeAll: "Veure-ho tot", readMore: "Llegir", newChip: "Nou",
         figAlt: "El rei banyut", figLabel: "Fig. 01 — El rei banyut", figSub: "Tinta sobre paper",
-        nav: { journal: "Diari", projects: "Projectes", books: "Llibres", belongings: "Pertinences", updates: "Novetats" },
-        lead: { journal: "Idees soltes, abans no s'escapin.", projects: "Coses que construeixo, en veu alta.", books: "Lectures que deixen marca.", belongings: "Les eines que més aprecio, i per què.", updates: "Canvis de rumb i de visió." },
+        nav: { journal: "Diari", projects: "Projectes", books: "Llibres", belongings: "Pertinences", updates: "Avalats" },
+        lead: { journal: "Idees soltes, abans no s'escapin.", projects: "Coses que construeixo, en silenci.", books: "Últimes lectures.", belongings: "Les eines que més aprecio, i per què.", updates: "Projectes de codi obert que recolzo, en què confio i que m'agraden." },
         sheet: "Full", locked1: "entrada xifrada", lockedN: "entrades xifrades",
         computing: "Computació", peripherals: "Perifèrics", artisans: "Keycaps artesanals", active: "Actiu", retired: "Retirat",
         pcRubiusName: "PC-Rubius-02", pcRubiusYears: "2026 — present", pcDarwinName: "PC-Darwin-01", pcDarwinYears: "2020 — 2026",
         laptopName: "Laptop-MacBook Air", laptopSub: "M5 · 13,6 · Starlight", laptopRows: [{k:"Model",v:"MacBook Air 13,6"},{k:"CPU",v:"Apple M5"},{k:"Color",v:"Starlight"},{k:"RAM",v:"16 GB"},{k:"Disc",v:"512 GB SSD"}],
+        reposRows: [{"repo":"CachyOS","name":"CachyOS","kind":"Sistema operatiu","why":"Distribució basada en Arch, optimitzada per al rendiment i fàcil d'instal·lar."},{"repo":"keepassxreboot/keepassxc","name":"KeePassXC","kind":"Seguretat","why":"Gestor de contrasenyes local i obert. Les meves claus, al meu disc."},{"repo":"LadybirdBrowser/ladybird","name":"Ladybird","kind":"Navegador","why":"Un navegador independent, escrit des de zero, sense dependre de cap motor existent."},{"repo":"ollama/ollama","name":"Ollama","kind":"Eina · IA","why":"Models de llenguatge en local, sense núvol. La IA corre a la meva màquina."},{"repo":"mjyoo2/OverleafMCP","name":"MCP Overleaf","kind":"Eina · IA","why":"Connecta Claude i altres clients MCP amb projectes d'Overleaf per llegir i editar LaTeX."},{"repo":"hrkfdn/ncspot","name":"ncspot","kind":"Terminal · Música","why":"Client de Spotify per a la terminal, escrit en Rust. Lleuger i amb tecles a l'estil vim."},{"repo":"yairm210/Unciv","name":"Unciv","kind":"Joc","why":"Remake obert de Civilization V. Petit, multiplataforma i fet per la comunitat."}],
         keyboardName: "TKD Cycle 7", keyboardSub: "70% · Void Elf",
         pcRubiusRows: [{k:"CPU",v:"Ryzen 7 9700X · 3.8 GHz"},{k:"GPU",v:"RX 9060 XT 16GB · Gigabyte Gaming OC"},{k:"Placa base",v:"B850I AsRock Phantom Gaming"},{k:"Font",v:"SF750 Corsair"},{k:"RAM",v:"Corsair Pro 2×16GB · 6000 MHz CL48"},{k:"Caixa",v:"Fractal Terra Jade"},{k:"Disc",v:"WD_BLACK SN850X · 2 TB"}],
         pcDarwinRows: [{k:"CPU",v:"Ryzen 7 2700X · 3.7 GHz"},{k:"GPU",v:"RTX 2060 6GB · Gigabyte Gaming OC"},{k:"Placa base",v:"B450 Aorus Elite V.2"},{k:"Font",v:"Corsair TX650M"},{k:"RAM",v:"Team Group Delta 2×8GB · 3200 MHz CL16"},{k:"Caixa",v:"MSI MPG Gungnir 110R"},{k:"Disc",v:"Kioxia Exceria 500GB SSD M.2"}],
@@ -498,7 +505,7 @@ class Component extends DCLogic {
         keyboard2Rows: [{k:"Model",v:"Apostole"},{k:"PCB",v:"Gondolindrim"},{k:"Keycaps",v:"GMK Evil Dolch"},{k:"Switches",v:"Cherry Black"},{k:"Artisans",v:"Apostle V2 Black & White (trit)\nSlain Black Skull"}],
         apostleTitle: "Apostle V2", apostleLead: "Black & White (trit).",
         dragonsTitle: "Els meus dracs", dragonsLead: "Cada drac, un caigut.", grimeyTitle: "Brut com ******", grimeyLead: "Adorables animalets", doctorTitle: "Doctor, tenim un problema!", doctorLead: "Em temo que és massa tard...",
-        footer: "Dibuixat i muntat a mà", scale: "Escala 1:1",
+        footer: "L'union fait la force", scale: "Escala 1:1",
         lockChip: "Xifrat", lockEntry: "Entrada xifrada", lockProject: "Projecte privat", lockBook: "Llibre estrella",
         lockPrompt: "Contrasenya", lockBtn: "Obrir", lockErr: "Contrasenya incorrecta", lockHint: "S'obre amb la teva clau o la mestra", relock: "Amaga", back: "Tornar",
         author: "Autor"
@@ -508,12 +515,13 @@ class Component extends DCLogic {
         lede: "A corner for technology, finance, and the tools I cherish. Here I keep what I think, what I build, and what I collect.",
         enter: "Start reading", enter2: "See belongings", seeAll: "See all", readMore: "Read", newChip: "New",
         figAlt: "The horned king", figLabel: "Fig. 01 — The horned king", figSub: "Ink on paper",
-        nav: { journal: "Journal", projects: "Projects", books: "Books", belongings: "Belongings", updates: "Updates" },
-        lead: { journal: "Loose ideas, before they slip away.", projects: "Things I build, out loud.", books: "Reads that leave a mark.", belongings: "The tools I value most, and why.", updates: "Shifts in course and vision." },
+        nav: { journal: "Journal", projects: "Projects", books: "Books", belongings: "Belongings", updates: "Endorsed" },
+        lead: { journal: "Loose ideas, before they slip away.", projects: "Things I build, quietly.", books: "Latest reads.", belongings: "The tools I value most, and why.", updates: "Open-source projects I back, trust and enjoy." },
         sheet: "Sheet", locked1: "encrypted entry", lockedN: "encrypted entries",
         computing: "Computing", peripherals: "Peripherals", artisans: "Artisan keycaps", active: "Active", retired: "Retired",
         pcRubiusName: "PC-Rubius-02", pcRubiusYears: "2026 — present", pcDarwinName: "PC-Darwin-01", pcDarwinYears: "2020 — 2026",
         laptopName: "Laptop-MacBook Air", laptopSub: "M5 · 13.6 · Starlight", laptopRows: [{k:"Model",v:"MacBook Air 13.6"},{k:"CPU",v:"Apple M5"},{k:"Colour",v:"Starlight"},{k:"RAM",v:"16 GB"},{k:"Storage",v:"512 GB SSD"}],
+        reposRows: [{"repo":"CachyOS","name":"CachyOS","kind":"Operating system","why":"Arch-based distribution tuned for performance and easy to install."},{"repo":"keepassxreboot/keepassxc","name":"KeePassXC","kind":"Security","why":"Local, open password manager. My keys, on my disk."},{"repo":"LadybirdBrowser/ladybird","name":"Ladybird","kind":"Browser","why":"A truly independent browser, built from scratch on no existing engine."},{"repo":"ollama/ollama","name":"Ollama","kind":"Tool · AI","why":"Local language models, no cloud. The AI runs on my own machine."},{"repo":"mjyoo2/OverleafMCP","name":"MCP Overleaf","kind":"Tool · AI","why":"Connects Claude and other MCP clients to Overleaf projects to read and edit LaTeX."},{"repo":"hrkfdn/ncspot","name":"ncspot","kind":"Terminal · Music","why":"A terminal Spotify client written in Rust. Lightweight, with vim-style keys."},{"repo":"yairm210/Unciv","name":"Unciv","kind":"Game","why":"Open-source remake of Civilization V. Small, cross-platform and community-built."}],
         keyboardName: "TKD Cycle 7", keyboardSub: "70% · Void Elf",
         pcRubiusRows: [{k:"CPU",v:"Ryzen 7 9700X · 3.8 GHz"},{k:"GPU",v:"RX 9060 XT 16GB · Gigabyte Gaming OC"},{k:"Motherboard",v:"B850I AsRock Phantom Gaming"},{k:"PSU",v:"SF750 Corsair"},{k:"RAM",v:"Corsair Pro 2×16GB · 6000 MHz CL48"},{k:"Case",v:"Fractal Terra Jade"},{k:"Storage",v:"WD_BLACK SN850X · 2 TB"}],
         pcDarwinRows: [{k:"CPU",v:"Ryzen 7 2700X · 3.7 GHz"},{k:"GPU",v:"RTX 2060 6GB · Gigabyte Gaming OC"},{k:"Motherboard",v:"B450 Aorus Elite V.2"},{k:"PSU",v:"Corsair TX650M"},{k:"RAM",v:"Team Group Delta 2×8GB · 3200 MHz CL16"},{k:"Case",v:"MSI MPG Gungnir 110R"},{k:"Storage",v:"Kioxia Exceria 500GB SSD M.2"}],
@@ -522,7 +530,7 @@ class Component extends DCLogic {
         keyboard2Rows: [{k:"Model",v:"Apostole"},{k:"PCB",v:"Gondolindrim"},{k:"Keycaps",v:"GMK Evil Dolch"},{k:"Switches",v:"Cherry Black"},{k:"Artisans",v:"Apostle V2 Black & White (trit)\nSlain Black Skull"}],
         apostleTitle: "Apostle V2", apostleLead: "Black & White (trit).",
         dragonsTitle: "My dragons", dragonsLead: "Each dragon, a fallen one.", grimeyTitle: "Grimey as ****", grimeyLead: "Adorable little critters", doctorTitle: "Doctor, we have a problem!", doctorLead: "I'm afraid it's too late...",
-        footer: "Drawn and built by hand", scale: "Scale 1:1",
+        footer: "L'union fait la force", scale: "Scale 1:1",
         lockChip: "Encrypted", lockEntry: "Encrypted entry", lockProject: "Private project", lockBook: "Star book",
         lockPrompt: "Password", lockBtn: "Open", lockErr: "Wrong password", lockHint: "Opens with your key or the master", relock: "Hide", back: "Back",
         author: "Author"
@@ -544,7 +552,7 @@ class Component extends DCLogic {
     const find = (arr) => arr.filter(o => o.slug === item)[0] || null;
     let detail = null;
     if (item && sec === "journal"){ const e = find(journalList); if (e) detail = { chip: e.tag, meta: e.date + " · " + e.mins + " min", t: e.t, body: e.body, foot: "§01 · " + e.num }; }
-    if (item && sec === "projects"){ const p = find(projectsList); if (p) detail = { chip: p.s, meta: "P-" + p.num, t: p.t, body: p.body, foot: "§02 · P-" + p.num }; }
+    if (false){ const p = find(projectsList); if (p) detail = { chip: p.s, meta: "P-" + p.num, t: p.t, body: p.body, foot: "§02 · P-" + p.num }; }
     if (item && sec === "books"){ const b = find(booksList); if (b) detail = { chip: b.cat, meta: b.st + " · " + b.a, t: b.t, body: b.note || "—", foot: "§03" }; }
     const lockedEntries = this.buildViews(this.secrets().entries);
     const nLocked = lockedEntries.filter(e => e.locked).length;
@@ -566,10 +574,10 @@ class Component extends DCLogic {
       isHome: sec === "home", isUpdates: sec === "updates" && isList, isBelongings: sec === "belongings",
       showSectionHead: isList, secNum: NUM[sec], secSheet: t.sheet + " " + NUM[sec], secTitle: t.nav[sec] || "", secLead: (t.lead && t.lead[sec]) || "",
       journalListView: sec === "journal" && !detail, projectsListView: sec === "projects" && !detail, booksListView: sec === "books" && !detail,
-      journalList, projectsList, booksList, updatesList,
+      journalList, projectsList, booksList, updatesList, reposList: (t.reposRows || []).map((r, i) => Object.assign({ num: pad(i), url: "https://github.com/" + r.repo }, r)),
       latest: journalList[0] || {}, hasLatest: journalList.length > 0, olderEntries: journalList.slice(1, 3),
       hasLocked: nLocked > 0, lockedCountLabel: nLocked + " " + (nLocked === 1 ? t.locked1 : t.lockedN),
-      lockedEntries, lockedProjects: this.buildViews(this.secrets().projects), lockedBooks: this.buildViews(this.secrets().books)
+      lockedEntries, lockedProjects: [], lockedBooks: this.buildViews(this.secrets().books)
     };
   }
 }
